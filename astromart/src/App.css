@@ -1,6 +1,85 @@
-.App {
-  text-align: center;
+
+
+* {
+  margin: 0;
+  padding: 0;
 }
+
+nav {
+  height: 80px;
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 0.5rem calc((100vw - 1000px) / 2 );
+}
+
+.nav-burger {
+  display: none;
+  color: #fff;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-right: -24px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  margin-right:24px
+}
+
+.signin-btn {
+  background: #256ce1;
+  border-radius: 4px;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 1rem;
+  border: none;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.signin-btn:hover {
+    background: #fff;
+    color: #010606;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .nav-burger  {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  font-size: 1.75rem;
+  top: 0;
+  right: 0;
+  transform: translate(-100%, 90%);
+  }
+
+  .nav-menu {
+  display: none;
+  }
+
+  .nav-btn {
+    display: none;
+  }
+
+}
+
 
 
 

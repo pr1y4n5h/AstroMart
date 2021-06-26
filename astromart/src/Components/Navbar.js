@@ -2,32 +2,50 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../App.css";
 import {FaBars} from "react-icons/fa";
+import {FaRocket} from "react-icons/fa";
+
+const normalStyle = {
+    color: "#fff", 
+    textDecoration: "none", 
+    display: "flex", 
+    alignItems: "center", 
+    height: "100%", 
+    padding: "0 1rem"
+}
 
 export function Navbar() {
     return ( 
     <>
-    <nav>
-    <NavLink to="/"> 
-    Navbar 
+    <nav className="nav-main" >
+    <NavLink 
+    to="/"
+    style={normalStyle}
+    activeStyle={{color: "#15cdfc"}}  > 
+    <FaRocket />
     </NavLink>
-    {/* <Bars />
-    <NavMenu>
-        <NavLink to="/about" activeStyle>
-            About
+    <span className="nav-burger"> <FaBars /> </span>
+    <div className="nav-menu">
+        <NavLink to="/" end style={normalStyle} activeStyle={{color: "#15cdfc"}}>
+            Home
         </NavLink>
-        <NavLink to="/services" activeStyle>
-            Services
+        <NavLink to="/products" style={normalStyle} style={normalStyle} activeStyle={{color: "#15cdfc"}}>
+            Products
         </NavLink>
-        <NavLink to="/contact-us" activeStyle>
+        <NavLink to="/contact-us" style={normalStyle} activeStyle={{color: "#15cdfc"}}>
             Contact Us
-        </NavLink>
-        <NavLink to="/sign-up" activeStyle>
+        </NavLink> 
+        <NavLink to="/sign-up" style={normalStyle} activeStyle={{color: "#15cdfc"}}>
             Sign up
         </NavLink>
-    </NavMenu>
-    <div>
+    </div>
+
+    <div className="nav-btn">
+    <NavLink className="signin-btn" to="/signin"> Sign In </NavLink>
+    </div>
+    
+    {/* <NavBtn>
         <NavBtnLink to="/signin"> Sign In </NavBtnLink>
-    </div> */}
+    </NavBtn> */}
     </nav>
     </>
     )
