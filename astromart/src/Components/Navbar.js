@@ -10,8 +10,8 @@ const normalStyle = {
     display: "flex", 
     alignItems: "center", 
     height: "100%", 
-    padding: "0 1rem"
-}
+    padding: "0 1rem",
+    fontSize: "1.5rem"}
 
 export function Navbar() {
     return ( 
@@ -42,7 +42,7 @@ export function Navbar() {
     <div className="nav-btn">
     <NavLink className="signin-btn" to="/signin"> Sign In </NavLink>
     </div>
-    
+
     {/* <NavBtn>
         <NavBtnLink to="/signin"> Sign In </NavBtnLink>
     </NavBtn> */}

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
 
 * {
   margin: 0;
@@ -6,6 +6,7 @@
 }
 
 nav {
+  font-family: 'Rakkas', cursive;
   height: 80px;
   background: #000;
   display: flex;
