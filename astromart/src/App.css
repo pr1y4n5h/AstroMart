@@ -1,11 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
 
+
+:root {
+  --primary-color: #ff4e00;
+  --secondary-color: #15cdfc;
+
+}
+
 * {
   margin: 0;
   padding: 0;
+  
 }
 
-nav {
+.nav-main {
   font-family: 'Rakkas', cursive;
   height: 80px;
   background: #000;
@@ -27,13 +35,24 @@ nav {
 }
 
 .nav-btn {
+  color: #fff;
+  text-decoration: none;
+  display:flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+
+.signin-btn {
   display: flex;
   align-items: center;
   margin-right:24px
 }
 
-.signin-btn {
-  background: #256ce1;
+.signin-nav-btn {
+  background: var(--primary-color);
   border-radius: 4px;
   color: #fff;
   text-decoration: none;
@@ -43,7 +62,7 @@ nav {
   transition: all 0.2s ease-in-out;
 }
 
-.signin-btn:hover {
+.signin-nav-btn:hover {
     background: #fff;
     color: #010606;
     transition: all 0.2s ease-in-out;
@@ -75,9 +94,13 @@ nav {
   display: none;
   }
 
-  .nav-btn {
+  .signin-btn {
     display: none;
   }
+
+
+
+
 
 }
 
