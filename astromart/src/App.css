@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
+@import url('https://ez-ui-library.netlify.app/styles.css');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 
 :root {
   --primary-color: #ff4e00;
   --secondary-color: #15cdfc;
-
+  --base-color: #fff;
+  --dark-color: #121212;
 }
 
 * {
@@ -16,7 +19,6 @@
 .nav-main {
   font-family: 'Rakkas', cursive;
   height: 80px;
-  background: #000;
   display: flex;
   justify-content: space-between;
   z-index: 10;
@@ -25,7 +27,7 @@
 
 .nav-burger {
   display: none;
-  color: #fff;
+  color: var(--base-color);
 }
 
 .nav-menu {
@@ -35,7 +37,7 @@
 }
 
 .nav-btn {
-  color: #fff;
+  color: var(--base-color);
   text-decoration: none;
   display:flex;
   align-items: center;
@@ -44,6 +46,23 @@
   font-size: 1.5rem;
 }
 
+.nav-btn:hover {
+  color: var(--primary-color)
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.nav-icon {
+  color: var(--base-color);
+  display:flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+}
 
 .signin-btn {
   display: flex;
@@ -51,28 +70,13 @@
   margin-right:24px
 }
 
-.signin-nav-btn {
-  background: var(--primary-color);
-  border-radius: 4px;
-  color: #fff;
-  text-decoration: none;
-  padding: 1rem 1rem;
-  border: none;
-  outline: none;
-  transition: all 0.2s ease-in-out;
+.dark-btn {
+  display:flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  cursor: pointer;
 }
-
-.signin-nav-btn:hover {
-    background: #fff;
-    color: #010606;
-    transition: all 0.2s ease-in-out;
-}
-
-
-
-
-
-
 
 
 
@@ -96,6 +100,12 @@
 
   .signin-btn {
     display: none;
+  }
+
+  .nav-icons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 
 
