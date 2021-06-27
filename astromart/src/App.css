@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
 @import url('https://ez-ui-library.netlify.app/styles.css');
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
+@import url('https://fonts.googleapis.com/css2?family=Cardo&display=swap');
 
 :root {
   --primary-color: #ff4e00;
@@ -47,6 +47,7 @@
 }
 
 .nav-btn:hover {
+  
   color: var(--primary-color)
 }
 
@@ -77,6 +78,86 @@
   padding: 0 1rem;
   cursor: pointer;
 }
+
+
+/* Card CSS */
+
+.products-container {
+  border: 4px solid;
+  padding: 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  margin: 1rem 1rem;
+  width: 250px;
+  -webkit-box-shadow: 0 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  box-shadow: 1rem 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.product-card-top {
+  position: relative;
+  object-fit: cover;
+  height: 300px;
+  width: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  border: 1px solid;
+}
+
+.product-card-top img {
+  max-width: 100%;
+  display: block;
+}
+
+.card-wishlist-btn {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  z-index: 100;
+  padding: 3px;
+  margin:0;
+  border-radius: 50%;
+  background: var(--base-color);
+}
+
+.product-card-body {
+  padding: 1rem 1rem;
+  
+}
+
+.product-card-body button {
+  display: flex;
+  justify-content: center;
+}
+
+.product-card-name {
+  font-family: 'Rakkas', cursive;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.product-card-details {
+  font-family: 'Cardo', serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
