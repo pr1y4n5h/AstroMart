@@ -1,52 +1,43 @@
 import React from 'react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
-const products = [
-    
-    {
-      id: 2,
-      name: "Relativity",
-      url: "https://images-na.ssl-images-amazon.com/images/I/813ExjDkhxS.jpg",
-      desc: "The Special and the General Theory",
-      author: "Albert Einstein",
-      mrp: 199,
-      off: 35,
-      price: 129
-    },
-
-    {
-        _id: "nasa-hoodie", 
-        name: "NASA Grey Sweatshirt",
-        url: "https://images-na.ssl-images-amazon.com/images/I/61Dgw5pj3GL._AC_UX569_.jpg", 
-        category: "clothes",
-        price: 699 ,
-        discount: 30,
-        description: "Love science and everything that has to do with outer space? Get this cute and trendy 'NASA' logo sweatshirt to show how nerdy and cool you are. Great for anyone who wants to be an astronaut or wishes they were one! Also makes a great gift!"
-    }
-  ];
-
-
+import {useState} from "react";
+import GradeRoundedIcon from '@material-ui/icons/GradeRounded';
+import {products} from "../data";
+import {Sidebar} from "../Components/Sidebar"
 
 export const ProductsPage = () => {
+
+    const [state, setState] = useState(false)
     return (
+        <div className="product-page">
+        <Sidebar />
         <div className="products-container">
             {
-                products.map(item => (
-                    <div className="product-card" >
+                products.map(({id, name, image, category, price, off, rating} , ind ) => (
+                    <div key={id} className="product-card" style={ ind%2 === 0 ? {backgroundColor: "#f1f2f6"} : {backgroundColor: "var(--base-color)"} } >
                     <div className="product-card-top">
-                    <img src={item.url} alt={item.name} />
-                    <FavoriteIcon className="card-wishlist-btn" style={{color: "#fb3958"}} />
+                    <img src={image} alt={name} />
+                    <FavoriteIcon onClick={() => setState(state => !state)} className="card-wishlist-btn" style={ state ? {color: "#fb3958"} : {color: "white"} } />
                     </div>
+
                     <div className="product-card-body" >
-                    <div className="product-card-name"> {item.name} </div>
+                    <div className="product-name"> {name} </div>
                     <div className="product-card-details">
-                    <span> INR {item.price} </span> <span> {item.off} </span> </div>
+                    <div> <GradeRoundedIcon style={ rating >= 4 ? {color: "var(--green-color)"} : (rating > 3 && rating < 4) ? {color: "var(--orange-color)"} : {color: "var(--red-color)"} } /> {rating} </div>
+                    <div> <span> {off}% Off </span> </div>
+                    <span className="product-price" > &#8377; {price} </span>
+                    </div>
+                    <div className="product-card-bottom"> 
                     <button className="primary-btn-1"> Add to Cart </button>
+                     
+                    </div>
                     </div>
                     </div>
                 ) )
             }
         </div>
+        </div>
     )
+    
 }
 
