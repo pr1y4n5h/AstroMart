@@ -25,6 +25,8 @@ export const Sidebar = () => {
             </label>
             </div>
 
+            <hr />
+
 
             <span className="sidebar-heading" >Discount</span>
             <div className="sort-div"> 

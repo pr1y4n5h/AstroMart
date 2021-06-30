@@ -1,7 +1,7 @@
 export const products = [
     
     {
-      id: "relativity",
+      _id: "relativity",
       name: "Relativity",
       image: "https://images-na.ssl-images-amazon.com/images/I/813ExjDkhxS.jpg",
       category: "books",

@@ -2,20 +2,14 @@ import React from "react";
 import "../App.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-import {useWishlist} from "../Contexts/WishlistContext";
-import {Link} from "react-router-dom";
-import {useParams} from "react-router-dom";
 
-export const ProductsCard = ({ products }) => {
 
-  const {_id, name, image, price, off, rating, stock } = products;
+export const WishlistCard = ({ products }) => {
 
-  const {dispatchWishlist, wishlist } = useWishlist();
+  const { name, image, price, off, rating, stock } = products;
 
   return (
     <div className="product-card">
-
-    <Link to={`/products/${_id}`} >
       <div
         className={`${
           stock ? "product-card-top" : "product-card-top-nostock"
@@ -26,12 +20,8 @@ export const ProductsCard = ({ products }) => {
         <FavoriteIcon
           className="card-wishlist-btn"
           style={{ color: "#fb3958" }}
-          onClick={() => dispatchWishlist({type: "ADD_TO_WISHLIST", payload: products }) }
         />
       </div>
-      </Link>
-
-
       <div className="product-card-body">
         <div className="product-name"> {name} </div>
         <div className="product-card-details">

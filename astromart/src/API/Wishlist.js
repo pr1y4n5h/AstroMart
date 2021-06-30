@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const BottomBar = () => {
+export const addToWishlist = (dispatchWishlist) => {
     return (
-        <div className="botm">
+        <div>
             
         </div>
     )

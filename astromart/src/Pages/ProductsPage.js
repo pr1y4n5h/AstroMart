@@ -18,20 +18,19 @@ export const ProductsPage = () => {
     return products;
   }
 
-  function getFiltered(products, { showProducts } )
-   {
-          return products.filter(({stock}) => ( showProducts ? true : stock ))
+  function getFiltered(products, { showProducts }) {
+    return products.filter(({ stock }) => (showProducts ? true : stock));
   }
 
   const sorted = getSorted(products, sortBy);
-  const filtered = getFiltered( sorted, { showProducts } )
+  const filtered = getFiltered(sorted, { showProducts });
 
   return (
     <div className="product-page">
       <Sidebar />
       <div className="products-container">
         {filtered.map((item) => (
-          <ProductsCard key={item.id} products={item} />
+          <ProductsCard key={item._id} products={item} />
         ))}
       </div>
     </div>
