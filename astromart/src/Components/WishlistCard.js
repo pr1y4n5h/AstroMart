@@ -4,9 +4,9 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 
 
-export const WishlistCard = ({ products }) => {
+export const WishlistCard = ({ wishlistData }) => {
 
-  const { name, image, price, off, rating, stock } = products;
+  const { name, image, price, off, rating, stock } = wishlistData;
 
   return (
     <div className="product-card">

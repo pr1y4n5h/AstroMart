@@ -41,7 +41,7 @@ export function Navbar() {
         </NavLink>
     </div>
     <div className="signin-btn">
-    <NavLink className="primary-btn-1" to="/signin"> Sign In </NavLink>
+    <NavLink className="primary-btn-1" to="/login"> Sign In </NavLink>
     </div>
     <div className="nav-icons" >
     <NavLink className="nav-icon" to="/wishlist" > <FavoriteRoundedIcon style={{color: "#fb3958"}} /> </NavLink>

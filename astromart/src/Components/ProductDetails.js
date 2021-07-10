@@ -1,10 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../data";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import "../App.css";
+import {useMainContext} from "../Contexts/MainContext"
 
 export const ProductDetails = () => {
+
+  const { products } = useMainContext();
   const { productID } = useParams();
 
   const { name, image, price, off, rating, details, stock, category } =

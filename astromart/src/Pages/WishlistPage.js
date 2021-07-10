@@ -1,11 +1,11 @@
 import React from 'react'
-import {useWishlist} from "../Contexts/WishlistContext";
+import {useMainContext} from "../Contexts/MainContext";
 import {WishlistCard} from "../Components/WishlistCard";
 import {Empty} from "../Components/Empty"
 
 export const WishlistPage = () => {
 
-  const {wishlist} = useWishlist()
+  const { wishlist } = useMainContext();
 
     return (
         <div>

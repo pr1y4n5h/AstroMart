@@ -4,17 +4,17 @@ import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import {ThemeProvider} from "./Contexts/ThemeContext";
 import {MainProvider} from "./Contexts/MainContext";
-import {WishlistProvider} from "./Contexts/WishlistContext";
+import {ProductProvider} from "./Contexts/ProductContext";
 
 ReactDOM.render(
   <React.StrictMode>
   <Router>
   <ThemeProvider>
-  <WishlistProvider>
+  <ProductProvider>
   <MainProvider>
     <App />
     </MainProvider>
-    </WishlistProvider>
+    </ProductProvider>
     </ThemeProvider>
     </Router>
   </React.StrictMode>,

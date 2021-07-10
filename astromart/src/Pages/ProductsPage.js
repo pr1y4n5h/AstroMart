@@ -1,12 +1,15 @@
-import React, { useReducer } from "react";
-import { products } from "../data";
+import React from "react";
 import { Sidebar } from "../Components/Sidebar";
 import { useMainContext } from "../Contexts/MainContext";
 import { ProductsCard } from "../Components/ProductsCard";
 import "../App.css";
+import {useFetchProducts} from "../Hooks/useFetchProducts";
+import {MyLoader} from "../Components/Loader"
 
 export const ProductsPage = () => {
-  const { sortBy, showProducts } = useMainContext();
+  const { sortBy, showProducts, products, loader } = useMainContext();
+
+  useFetchProducts();
 
   function getSorted(products, sortBy) {
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {
@@ -29,6 +32,7 @@ export const ProductsPage = () => {
     <div className="product-page">
       <Sidebar />
       <div className="products-container">
+      { loader && <MyLoader />}
         {filtered.map((item) => (
           <ProductsCard key={item._id} products={item} />
         ))}
