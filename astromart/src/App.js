@@ -6,9 +6,9 @@ import {HomePage} from "./Pages/HomePage";
 import {ProductsPage} from "./Pages/ProductsPage";
 import {WishlistPage} from "./Pages/WishlistPage";
 import {LoginPage} from "./Pages/LoginPage";
-import {ProductDetails} from "./Components/ProductDetails"
-
-
+import {ProductDetails} from "./Pages/ProductDetails";
+import {PrivateRoute} from "./PrivateRoute";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
@@ -20,10 +20,11 @@ export default function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:productID" element={<ProductDetails /> } />
         <Route path="/login" element={<LoginPage />} />   
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/wishlist" element={<WishlistPage />} /> 
+        <PrivateRoute path="/cart" element={<CartPage />} />
+        <PrivateRoute path="/wishlist" element={<WishlistPage />} /> 
         </Routes>
       </main>
+      <ToastContainer />
     </div>
   );
 }

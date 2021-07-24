@@ -4,7 +4,7 @@ import { useMainContext } from "../Contexts/MainContext"
 
 export const Sidebar = () => {
 
-  const { sortBy, dispatchMain, showProducts } = useMainContext();
+  const { sortBy, dispatchMain, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showJewellery, showOthers } = useMainContext();
 
     return (
         <>
@@ -25,7 +25,7 @@ export const Sidebar = () => {
             </label>
             </div>
 
-            <hr />
+            
 
 
             {/* <span className="sidebar-heading" >Price</span>
@@ -46,25 +46,31 @@ export const Sidebar = () => {
 
             <div className="sort-div"> 
             <label className="sidebar-label">
-            <input type="checkbox" /> Clothing
+            <input type="checkbox" checked={showClothing} onChange={() => dispatchMain({type: "TOGGLE_CLOTHING"}) } /> Clothing
             </label>
             </div>
 
             <div className="sort-div"> 
             <label className="sidebar-label">
-            <input type="checkbox" /> Books
+            <input type="checkbox" checked={showBooks} onChange={() => dispatchMain({type: "TOGGLE_BOOKS"}) } /> Books
             </label>
             </div>
 
             <div className="sort-div"> 
             <label className="sidebar-label">
-            <input type="checkbox" /> Gadgets
+            <input type="checkbox" checked={showGadgets} onChange={() => dispatchMain({type: "TOGGLE_GADGETS"}) } /> Gadgets
             </label>
             </div>
 
             <div className="sort-div"> 
             <label className="sidebar-label">
-            <input type="checkbox" /> Others
+            <input type="checkbox" checked={showJewellery} onChange={() => dispatchMain({type: "TOGGLE_JEWELLERY"}) }  /> Jewellery
+            </label>
+            </div>
+
+            <div className="sort-div"> 
+            <label className="sidebar-label">
+            <input type="checkbox" checked={showOthers} onChange={() => dispatchMain({type: "TOGGLE_OTHERS"}) } /> Others
             </label>
             </div>
 
@@ -75,6 +81,14 @@ export const Sidebar = () => {
             <input type="checkbox" checked={showProducts} onChange={() => dispatchMain({type: "TOGGLE_STOCK"}) } /> Include Out of Stock
             </label>
             </div>
+
+            <span className="sidebar-heading" >Delivery</span>
+            <div className="sort-div"> 
+            <label className="sidebar-label">
+            <input type="checkbox" checked={showDeluxe} onChange={() => dispatchMain({type: "TOGGLE_DELUXE"}) } /> Deluxe
+            </label>
+            </div>
+
           </fieldset>
 
 

@@ -19,14 +19,13 @@ export const ProductsCard = ({ products }) => {
         >
           <img src={image} alt={name} />
           <span className="sold-text"> SOLD! </span>
-          <FavoriteIcon
+        </div>
+      </Link>
+      <FavoriteIcon
             className="card-wishlist-btn"
             style={{ color: "#fb3958" }}
             // onClick={() => dispatchProduct({type: "ADD_TO_WISHLIST", payload: products }) }
           />
-        </div>
-      </Link>
-
       <div className="product-card-body">
         <div className="product-name"> {name} </div>
         <div className="product-card-details">

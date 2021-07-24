@@ -7,7 +7,7 @@ import {useFetchProducts} from "../Hooks/useFetchProducts";
 import {MyLoader} from "../Components/Loader"
 
 export const ProductsPage = () => {
-  const { sortBy, showProducts, products, loader } = useMainContext();
+  const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
 
   useFetchProducts();
 
@@ -21,12 +21,21 @@ export const ProductsPage = () => {
     return products;
   }
 
-  function getFiltered(products, { showProducts }) {
-    return products.filter(({ stock }) => (showProducts ? true : stock));
+  function getFiltered(products, { showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery }) {
+    return products
+    .filter(({ stock }) => (showProducts ? true : stock))
+    .filter(({deluxe}) => (showDeluxe ? deluxe : true))
+    .filter(({category}) => (showClothing ? category==="clothing" : showBooks ? category==="books" : showGadgets ? category==="gadgets" : category))
+
+
+    // .filter(({category}) => (showBooks ? category==="books" : category) )
+    // .filter(({category}) => (showGadgets ? category==="gadgets" : true) )
+    // .filter(({category}) => (showJewellery ? category==="jewellery" : true) )
+    // .filter(({category}) => (showOthers ? category==="others" : true) )
   }
 
   const sorted = getSorted(products, sortBy);
-  const filtered = getFiltered(sorted, { showProducts });
+  const filtered = getFiltered(sorted, { showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery });
 
   return (
     <div className="product-page">

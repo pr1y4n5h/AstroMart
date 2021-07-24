@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
-@import url('https://ez-ui-library.netlify.app/styles.css');
+@import url("https://fonts.googleapis.com/css2?family=Rakkas&display=swap");
+@import url("https://ez-ui-library.netlify.app/styles.css");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 :root {
   --primary-color: #ff4e00;
@@ -10,7 +9,7 @@
   --base-color: #fff;
   --dark-color: #121212;
   --green-color: #26de81;
-  --red-color: #EA2027;
+  --red-color: #ea2027;
   --orange-color: #ffa502;
   --grey-color: #d1d8e0;
 }
@@ -18,16 +17,15 @@
 * {
   margin: 0;
   padding: 0;
-  
 }
 
 .nav-main {
-  font-family: 'Rakkas', cursive;
+  font-family: "Rakkas", cursive;
   height: 80px;
   display: flex;
   justify-content: space-between;
   z-index: 1000;
-  padding: 0.5rem calc((100vw - 1000px) / 2 );
+  padding: 0.5rem calc((100vw - 1000px) / 2);
   position: sticky;
   top: 0;
 }
@@ -46,7 +44,7 @@
 .nav-btn {
   color: var(--base-color);
   text-decoration: none;
-  display:flex;
+  display: flex;
   align-items: center;
   height: 100%;
   padding: 0 1rem;
@@ -54,7 +52,7 @@
 }
 
 .nav-btn:hover {
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
 .nav-icons {
@@ -65,7 +63,7 @@
 
 .nav-icon {
   color: var(--base-color);
-  display:flex;
+  display: flex;
   align-items: center;
   height: 100%;
   padding: 0 1rem;
@@ -74,11 +72,11 @@
 .signin-btn {
   display: flex;
   align-items: center;
-  margin-right:24px
+  margin-right: 24px;
 }
 
 .dark-btn {
-  display:flex;
+  display: flex;
   align-items: center;
   height: 100%;
   padding: 0 1rem;
@@ -88,7 +86,6 @@
 .product-page {
   display: flex;
 }
-
 
 aside {
   width: 25%;
@@ -100,13 +97,12 @@ aside {
 }
 
 fieldset {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   box-shadow: 1rem 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
   border-radius: 8px;
   border: 1px solid var(--grey-color);
   width: 225px;
 }
-
 
 .sidebar-legend {
   padding: 0.5rem 0;
@@ -126,22 +122,14 @@ fieldset {
   cursor: pointer;
 }
 
-
-
 .empty-container {
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
-
-
-
-
-
 
 /* Product Card CSS */
 
 .products-container {
-  border: 2px solid var(--grey-color);
   padding: 1rem 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -150,13 +138,15 @@ fieldset {
 .product-card {
   margin: 1rem 1rem;
   width: 250px;
+  height: 400px;
   box-shadow: 1rem 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
   border-radius: 8px;
   /* border: 1px solid; */
-  font-family: 'Inter', sans-serif;
-  transition: all .2s ease-in-out;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 .product-card:hover {
@@ -171,9 +161,8 @@ fieldset {
 .product-card-top img {
   max-width: 100%;
   display: block;
-  height: 300px;
   object-fit: cover;
-  height: 250px;
+  height: 220px;
 }
 
 .product-card-top-nostock img {
@@ -182,14 +171,14 @@ fieldset {
   object-fit: cover;
   height: 300px;
   opacity: 0.5;
-  filter: grayscale(100%)
+  filter: grayscale(100%);
 }
 
 .product-card-top-nostock > .sold-text {
   position: absolute;
   top: 10rem;
   left: 4rem;
-  font-family: 'Rakkas', cursive;
+  font-family: "Rakkas", cursive;
   font-size: 3rem;
   transform: rotate(-45deg);
   color: var(--primary-color);
@@ -205,20 +194,14 @@ fieldset {
   top: 4px;
   z-index: 100;
   padding: 3px;
-  margin:0;
+  margin: 0;
   border-radius: 50%;
   background: var(--base-color);
   cursor: pointer;
 }
 
-
-
-
-
-
 .product-card-body {
   padding: 1rem 1rem;
-  
 }
 
 .product-name {
@@ -228,14 +211,13 @@ fieldset {
   justify-content: center;
 }
 
-
 .product-card-details {
   position: relative;
 }
 
 .product-card-bottom {
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
 
 .product-price {
@@ -244,11 +226,9 @@ fieldset {
   position: absolute;
   right: 0;
   top: 14px;
-
 }
 
 /* Product Card Container */
-
 
 .product-details-container {
   display: flex;
@@ -260,7 +240,6 @@ fieldset {
   width: 500px;
   display: flex;
   justify-content: center;
-  
 }
 
 .product-details-image img {
@@ -268,7 +247,7 @@ fieldset {
   display: block;
   margin: 1rem 1rem;
   object-fit: cover;
-  box-shadow: 2px 2px 5px var(--dark-color) ;
+  box-shadow: 2px 2px 5px var(--dark-color);
 }
 
 .product-details-content {
@@ -276,14 +255,12 @@ fieldset {
   width: 500px;
   margin-left: 1rem;
   padding: 2rem 1.5rem;
-  font-family: 'Inter', sans-serif;
-  
+  font-family: "Inter", sans-serif;
 }
 
-.product-details-heading  {
+.product-details-heading {
   font-size: 2rem;
   font-weight: bolder;
-  
 }
 
 .product-rating-div {
@@ -303,8 +280,6 @@ fieldset {
   margin-top: 4rem;
 }
 
-
-
 .product-details-mrp {
   color: #808e9b;
   font-size: 1.15rem;
@@ -314,7 +289,6 @@ fieldset {
 .product-details-price {
   font-size: 1.3rem;
   font-weight: bolder;
-  
 }
 
 .product-details-savings {
@@ -327,14 +301,10 @@ fieldset {
   margin-bottom: 2rem;
 }
 
-
 .product-details-buttons {
   display: flex;
   flex-direction: column;
 }
-
-
-
 
 /* Login Page CSS */
 
@@ -348,12 +318,12 @@ fieldset {
 }
 
 .login-box {
-  font-family: 'Rakkas', cursive;
+  font-family: "Rakkas", cursive;
   width: 280px;
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: var(--base-color);
   /* z-index: 10; */
 }
@@ -375,7 +345,6 @@ fieldset {
   border-bottom: 1px solid var(--base-color);
 }
 
-
 .credentials input {
   border: none;
   outline: none;
@@ -385,7 +354,6 @@ fieldset {
   width: 80%;
   margin: 10px;
   font-size: 1.1rem;
-
 }
 
 .login-btn {
@@ -397,56 +365,29 @@ fieldset {
   padding: 5px;
   font-size: 1.3rem;
   margin: 12px 0;
-
 }
-
-
-
 
 .loader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60vh;
+  z-index: 10;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media screen and (max-width: 768px) {
-
-  .nav-burger  {
-  display: block;
-  cursor: pointer;
-  position: absolute;
-  font-size: 1.75rem;
-  top: 0;
-  right: 0;
-  transform: translate(-100%, 90%);
+  .nav-burger {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.75rem;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 90%);
   }
 
   .nav-menu {
-  display: none;
+    display: none;
   }
 
   .signin-btn {
@@ -464,8 +405,7 @@ fieldset {
   }
 
   .product-details-image {
-    margin-top:0;
-    
+    margin-top: 0;
   }
 
   .product-details-content {
@@ -473,13 +413,6 @@ fieldset {
     width: 500px;
     margin-left: 0;
     padding: 2rem 1.5rem;
-    font-family: 'Inter', sans-serif;
-    
+    font-family: "Inter", sans-serif;
   }
-
-
-
-
-
 }
-

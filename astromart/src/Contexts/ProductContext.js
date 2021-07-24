@@ -8,8 +8,6 @@ const initialState = {
     cart: [],
     cartId: null,
     wishlistId: null 
-    // inCart: false,
-    // inWishlist: false
   }
 
 function productReducer(state, action) {

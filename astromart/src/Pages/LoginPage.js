@@ -1,13 +1,26 @@
 import { useState } from "react";
+import { useAuth } from "../Contexts/AuthContext";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export const LoginPage = () => {
 
-  const initialState = {
-    username: "",
-    password: ""
-  }
+  const { isUserLoggedIn, loginUser} = useAuth();
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
-  const [{username, password}, setCredentials] = useState(initialState);
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  // const [credentials, setCredentials] = useState({
+  //   username
+  // })
+
+
+
+
+  async function loginHandler() {
+    loginUser(username, password)
+    navigate(state?.from ? state.from : "/")
+  }
 
   return (
     <div className="login-page-box">
@@ -17,20 +30,23 @@ export const LoginPage = () => {
           <input
             type="text"
             placeholder="Enter Username"
+            autoComplete="off"
             value={username}
-            onChange={(evt) => setCredentials(evt.target.value)}
+            onChange={(evt) => setUsername(evt.target.value)}
           />
         </div>
         <div className="credentials">
           <input
             type="password"
             placeholder="Enter Password"
+            autoComplete="off"
             value={password}
-            onChange={(evt) => setCredentials(evt.target.value)}
+            onChange={(evt) => setPassword(evt.target.value)}
           />
         </div>
-        <button className="login-btn"> Login </button>
+        <button type="submit" className="login-btn" onClick={loginHandler}> Login </button>
       </div>
+
     </div>
   );
 };
