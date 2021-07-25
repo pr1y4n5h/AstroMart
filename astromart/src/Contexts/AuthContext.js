@@ -1,27 +1,34 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fakeAuthAPI } from "../DB";
 import { useMainContext } from "../Contexts/MainContext";
 import { toastText } from "../Components/Toast";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
+// function loginWithApi() {
+//   return axios.post("http://localhost:5000/login"), {
+//     user: {username: "abc", password: "123"}
+//   }
+// }
+
+
 export function AuthProvider({ children }) {
-  const [isUserLoggedIn, setLogin] = useState(false);
+
+  const { isUserLoggedIn, token: savedToken } = JSON.parse(
+    localStorage?.getItem("login")
+  ) || { isUserLoggedIn: false, token: null };
+
+  const [isUserLogin, setLogin] = useState(isUserLoggedIn);
+  const [token, setToken] = useState(savedToken);
 //   const { dispatchMain } = useMainContext();
 
-  useEffect(() => {
-    const loggedIn = JSON.parse(localStorage?.getItem("login"));
-    loggedIn?.isUserLoggedIn && setLogin(true);
-  }, []);
 
-  async function loginUser(username, password) {
+  async function loginUserWithCreds(username, password) {
     // dispatchMain({ type: "SET_LOADER" });  
     try {
-      const response = await fakeAuthAPI(username, password);
-      if (response.success) {
-        setLogin(true);
-        toastText("You are Logged In now!");
-        localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true }));
+      const response = await axios.post("http://localhost:5000/login",  {username, password});
+      if (response.status === 200) {
+        loginUser(response.data)
       } else {
         toastText("Check your credentials");
       }
@@ -30,13 +37,21 @@ export function AuthProvider({ children }) {
     } 
   }
 
+  function loginUser({token}) {
+    setLogin(true);
+    setToken(token);
+    toastText("You are Logged In now!");
+    localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true, token }));
+  }
+
   async function logOutUser() {
     setLogin(false);
     localStorage.removeItem("login");
+    setToken(null);
   }
 
   return (
-    <AuthContext.Provider value={{ isUserLoggedIn, loginUser, logOutUser }}>
+    <AuthContext.Provider value={{ isUserLogin, loginUserWithCreds, logOutUser, token }}>
       {children}
     </AuthContext.Provider>
   );

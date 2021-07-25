@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import "../App.css";
 import {useMainContext} from "../Contexts/MainContext"
+import {useScrollToTop} from "../Hooks/useScrollToTop"
 
 export const ProductDetails = () => {
+
+  useScrollToTop();
 
   const { products } = useMainContext();
   const { productID } = useParams();

@@ -315,6 +315,7 @@ fieldset {
   margin: 0 auto;
   padding: 0;
   position: relative;
+  border: 2px solid black;
 }
 
 .login-box {
@@ -325,7 +326,6 @@ fieldset {
   left: 50%;
   transform: translate(-50%, -50%);
   color: var(--base-color);
-  /* z-index: 10; */
 }
 
 .login-box h1 {
@@ -343,6 +343,7 @@ fieldset {
   padding: 8px 0;
   margin: 8px 0;
   border-bottom: 1px solid var(--base-color);
+  /* border: 1px solid white; */
 }
 
 .credentials input {
@@ -350,11 +351,18 @@ fieldset {
   outline: none;
   background: none;
   color: var(--base-color);
-  float: left;
   width: 80%;
   margin: 10px;
   font-size: 1.1rem;
+  position: relative;
 }
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
 
 .login-btn {
   width: 100%;
@@ -366,6 +374,30 @@ fieldset {
   font-size: 1.3rem;
   margin: 12px 0;
 }
+
+.signup-page-box {
+  background: url(./images/signup_img.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  border: 2px solid black;
+  color: var(--primary-color);
+}
+
+.signup-box {
+  font-family: "Rakkas", cursive;
+  width: 300px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--base-color);
+}
+
+
+
 
 .loader {
   display: flex;
@@ -392,6 +424,10 @@ fieldset {
 
   .signin-btn {
     display: none;
+  }
+
+  .login-box h1 {
+    color: var(--primary-color);
   }
 
   .nav-icons {

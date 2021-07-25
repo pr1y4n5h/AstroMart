@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../App.css";
-import { FaBars } from "react-icons/fa";
-import { FaRocket } from "react-icons/fa";
+import { FaRocket, FaBars } from "react-icons/fa";
 import { useTheme } from "../Contexts/ThemeContext";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
@@ -15,7 +14,7 @@ import { useAuth } from "../Contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function Navbar() {
-  const { isUserLoggedIn, logOutUser } = useAuth();
+  const { isUserLogin, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
   const navigate = useNavigate();
 
@@ -77,9 +76,9 @@ export function Navbar() {
         <div className="signin-btn">
           <button
             className="primary-btn-1"
-            onClick={isUserLoggedIn ? logOutHandler : logInHandler}
+            onClick={isUserLogin ? logOutHandler : logInHandler}
           >
-            {isUserLoggedIn ? "Log Out" : "Log In"}
+            {isUserLogin ? "Log Out" : "Log In"}
           </button>
         </div>
         <div className="nav-icons">

@@ -4,12 +4,14 @@ import { useMainContext } from "../Contexts/MainContext";
 import { ProductsCard } from "../Components/ProductsCard";
 import "../App.css";
 import {useFetchProducts} from "../Hooks/useFetchProducts";
-import {MyLoader} from "../Components/Loader"
+import {MyLoader} from "../Components/Loader";
+import {useScrollToTop} from "../Hooks/useScrollToTop";
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
 
   useFetchProducts();
+  useScrollToTop();
 
   function getSorted(products, sortBy) {
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {

@@ -28,6 +28,7 @@ export function useFetchProducts() {
   }
 
   useEffect(() => {
+      
     if (products.length === 0) {
       fetchProducts();
     }
