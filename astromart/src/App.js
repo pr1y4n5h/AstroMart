@@ -10,20 +10,22 @@ import {SignupPage} from "./Pages/SignupPage";
 import {ProductDetails} from "./Pages/ProductDetails";
 import {PrivateRoute} from "./PrivateRoute";
 import { ToastContainer } from "react-toastify";
+import {ErrorPage} from "./Pages/ErrorPage"
 
 export default function App() {
   return (
     <div className="App">
       <Navbar />
-      <main className="main">      
+      <main className="main">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:productID" element={<ProductDetails /> } />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up" element={<SignupPage />} />   
+        <Route path="/sign-up" element={<SignupPage />} />
         <PrivateRoute path="/cart" element={<CartPage />} />
-        <PrivateRoute path="/wishlist" element={<WishlistPage />} /> 
+        <PrivateRoute path="/wishlist" element={<WishlistPage />} />
+        <Route path="*" element={<ErrorPage />} /> 
         </Routes>
       </main>
       <ToastContainer />

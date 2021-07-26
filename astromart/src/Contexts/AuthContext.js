@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useMainContext } from "../Contexts/MainContext";
-import { toastText } from "../Components/Toast";
+// import { toastText } from "../Components/Toast";
 import axios from "axios";
 
 export const AuthContext = createContext();
@@ -26,11 +26,11 @@ export function AuthProvider({ children }) {
   async function loginUserWithCreds(username, password) {
     // dispatchMain({ type: "SET_LOADER" });  
     try {
-      const response = await axios.post("http://localhost:5000/login",  {username, password});
+      const response = await axios.post("http://localhost:5000/login", { data : { username, password}} );
       if (response.status === 200) {
         loginUser(response.data)
       } else {
-        toastText("Check your credentials");
+        // toastText("Check your credentials");
       }
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
   function loginUser({token}) {
     setLogin(true);
     setToken(token);
-    toastText("You are Logged In now!");
+    // toastText("You are Logged In now!");
     localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true, token }));
   }
 

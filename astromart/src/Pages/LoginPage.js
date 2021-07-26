@@ -12,13 +12,14 @@ export const LoginPage = () => {
   const { loginUserWithCreds } = useAuth();
   const { state } = useLocation();
   const navigate = useNavigate();
-
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: ""
+  });
   const [isVisible, setVisible] = useState(false)
 
   async function loginHandler() {
-
+    const {username, password} = credentials;
     loginUserWithCreds(username, password)
 
     // navigate(state?.from ? state.from : "/")
@@ -34,8 +35,8 @@ export const LoginPage = () => {
             type="text"
             placeholder="Enter Username"
             autoComplete="off"
-            value={username}
-            onChange={(evt) => setUsername(evt.target.value)}
+            value={credentials.username}
+            onChange={(event) => setCredentials({...credentials, username: event.target.value})}
           />
         </div>
         <div className="credentials">
@@ -44,14 +45,14 @@ export const LoginPage = () => {
             type={isVisible ? "text" : "password"}
             placeholder="Enter Password"
             autoComplete="off"
-            value={password}
-            onChange={(evt) => setPassword(evt.target.value)}
+            value={credentials.password}
+            onChange={(event) => setCredentials({...credentials, password: event.target.value})}
           />
           <span className="eye-btn" onClick={() => setVisible(isVisible => !isVisible) }> {isVisible ? <FaEyeSlash /> : <FaEye /> }</span>
         </div>
         <button type="submit" className="login-btn" onClick={loginHandler}> Login </button>
-        <div>
-          <NavLink to="/sign-up"> Don't have account? </NavLink>
+        <div className="login-lower">
+          <NavLink className="signup-link" to="/sign-up"> Don't have account? </NavLink>
           <span > Login as Guest </span>
         </div>
       </div>
