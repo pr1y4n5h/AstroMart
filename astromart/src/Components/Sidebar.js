@@ -8,7 +8,7 @@ export const Sidebar = () => {
 
     return (
         <>
-          <aside>
+          <aside className="sidebar-aside">
 
           <fieldset className="sort-fieldset">
             <legend className="sidebar-legend"> Sort by </legend>

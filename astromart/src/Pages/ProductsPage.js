@@ -5,7 +5,7 @@ import { ProductsCard } from "../Components/ProductsCard";
 import "../App.css";
 import {useFetchProducts} from "../Hooks/useFetchProducts";
 import {MyLoader} from "../Components/Loader";
-import {useScrollToTop} from "../Hooks/useScrollToTop";
+import {useScrollToTop} from "../Hooks/useScrollToTop"; 
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();

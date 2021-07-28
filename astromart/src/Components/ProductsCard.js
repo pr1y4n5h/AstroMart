@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
 
 export const ProductsCard = ({ products }) => {
-  const { _id, name, image, price, off, rating, stock } = products;
-  const { cart, dispatchProduct } = useProducts();
+  const { _id, name, image, price, off, rating, stock, deluxe } = products;
+  const { dispatchProduct } = useProducts();
 
-  return (
+  return ( 
     <div className="product-card">
+    <div class="ribbon" style={!deluxe ? {display:"none"} : {display:"block"}} ><span>Deluxe</span></div>
       <Link to={`/products/${_id}`}>
         <div
           className={`${
@@ -24,7 +25,7 @@ export const ProductsCard = ({ products }) => {
       <FavoriteIcon
             className="card-wishlist-btn"
             style={{ color: "#fb3958" }}
-            // onClick={() => dispatchProduct({type: "ADD_TO_WISHLIST", payload: products }) }
+            onClick={() => dispatchProduct({type: "ADD_TO_WISHLIST", payload: products }) }
           />
       <div className="product-card-body">
         <div className="product-name"> {name} </div>

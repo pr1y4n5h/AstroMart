@@ -65,7 +65,7 @@ function mainReducer(state, action) {
         ...state,
         showOthers: !state.showOthers,
       };
-
+ 
     case "SET_LOADER":
       return { ...state, loader: !state.loader };
 

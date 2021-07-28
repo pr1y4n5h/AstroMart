@@ -7,12 +7,12 @@ import {useScrollToTop} from "../Hooks/useScrollToTop"
 
 export const ProductDetails = () => {
 
-  useScrollToTop();
+  useScrollToTop(); 
 
   const { products } = useMainContext();
   const { productID } = useParams();
 
-  const { name, image, price, off, rating, details, stock, category } =
+  const { name, image, price, off, rating, details, category, deluxe } =
     products.find((product) => product._id === productID);
 
     const mrp = Math.round((price*100)/(100-off));
@@ -22,6 +22,8 @@ export const ProductDetails = () => {
     <div className="product-details-container">
       <div className="product-details-image">
         <img src={image} alt={name} />
+        <div class="ribbon" style={!deluxe ? {display:"none"} : {display:"block"}} ><span>Deluxe</span></div>
+
       </div>
 
 

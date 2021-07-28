@@ -1,15 +1,16 @@
 import React from "react";
-import "../App.css";
+import "../App.css"; 
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-
+import { Link } from "react-router-dom"; 
 
 export const WishlistCard = ({ wishlistData }) => {
 
-  const { name, image, price, off, rating, stock } = wishlistData;
+  const { _id, name, image, price, off, rating, stock } = wishlistData;
 
   return (
     <div className="product-card">
+    <Link to={`/products/${_id}`}>
       <div
         className={`${
           stock ? "product-card-top" : "product-card-top-nostock"
@@ -17,11 +18,12 @@ export const WishlistCard = ({ wishlistData }) => {
       >
         <img src={image} alt={name} />
         <span className="sold-text"> SOLD! </span>
+        </div>
+        </Link>
         <FavoriteIcon
           className="card-wishlist-btn"
           style={{ color: "#fb3958" }}
         />
-      </div>
       <div className="product-card-body">
         <div className="product-name"> {name} </div>
         <div className="product-card-details">

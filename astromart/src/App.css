@@ -61,6 +61,14 @@
   padding: 0 1rem;
 }
 
+/* .nav-icons-responsive {
+  display: none;
+  /* align-items: center;
+  padding: 0 1rem;
+  bottom: 0;
+  background-color: var(--dark-color); 
+} */
+
 .nav-icon {
   color: var(--base-color);
   display: flex;
@@ -87,7 +95,7 @@
   display: flex;
 }
 
-aside {
+.sidebar-aside {
   width: 25%;
   /* border: 2px solid; */
   padding: 2rem 1.5rem;
@@ -240,6 +248,7 @@ fieldset {
   width: 500px;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .product-details-image img {
@@ -306,6 +315,183 @@ fieldset {
   flex-direction: column;
 }
 
+
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#FF4E00 0%, #EB290C 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #EB290C;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #EB290C;
+}
+
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #EB290C;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #EB290C;
+}
+
+
+
+/* Cart Page CSS */
+
+.cart-products-div {
+  margin: 1rem 1rem;
+}
+
+.cart-page {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 1rem 1rem; */
+  border: 3px solid;
+}
+
+.cart-card {
+  margin: 1rem 1rem;
+  height: 400px;
+  width: 650px;
+  box-shadow: 1rem 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  border-radius: 8px;
+  /* border: 1px solid; */
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.cart-img-div img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 320px;
+  position: relative;
+}
+
+.cart-card-body {
+  padding: 1rem 1rem;
+  /* border: 1px solid; */
+  width: 280px;
+}
+
+.cart-details-heading {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-card-details {
+  position: relative;
+}
+
+.cart-product-price {
+  font-size: 1.4rem;
+  font-weight: bolder;
+  /* position: absolute;
+  right: 0;
+  top: 14px; */
+}
+
+.cart-card-bottom {
+  /* display: flex;
+  justify-content: center; */
+}
+
+.cart-card-qty-div {
+  display: flex;
+  justify-content: center;
+}
+
+.update-qty-btn {
+  color: var(--base-color);
+  font-weight:bolder;
+  background: var(--primary-color);
+  border-radius: 4px;
+  text-decoration: none;
+  padding: 0.2rem 0.3rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  border: 2px solid var(--primary-color);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  outline: none;
+}
+
+.update-qty-btn:hover {
+  background: var(--base-color);
+  color: var(--primary-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.update-qty-btn:active {
+  transform: translateY(3px);
+}
+
+.cart-bottom-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+
+
+
+
+
+
+
+
+.cart-summary-aside {
+  font-family: "Inter", sans-serif;
+  width: 40%;
+  /* border: 2px solid; */
+  padding: 2rem 1.5rem;
+  height: 60vh;
+  position: sticky;
+  top: 100px;
+  box-shadow: 1rem 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+}
+
+.cart-summary-heading {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
 /* Login Page CSS */
 
 .login-page-box {
@@ -362,7 +548,6 @@ fieldset {
   right: 10px;
   cursor: pointer;
 }
-
 
 .login-btn {
   width: 100%;
@@ -432,13 +617,13 @@ fieldset {
   padding: 0;
 }
 
-.message404  {
+.message404 {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   height: 40vh;
-  padding:1rem 1rem;
+  padding: 1rem 1rem;
   color: var(--base-color);
 }
 
@@ -450,13 +635,6 @@ fieldset {
 .message404 h3 {
   font-family: "Inter", sans-serif;
 }
-
-
-
-
-
-
-
 
 .loader {
   display: flex;
@@ -495,7 +673,7 @@ fieldset {
     justify-content: center;
   }
 
-  aside {
+  .sidebar-aside {
     display: none;
   }
 
@@ -511,9 +689,9 @@ fieldset {
     font-family: "Inter", sans-serif;
   }
 
-  .message404  {
+  .message404 {
     height: 70vh;
-    padding:1rem 1rem;
+    padding: 1rem 1rem;
     color: var(--dark-color);
   }
 
@@ -522,4 +700,22 @@ fieldset {
     margin-bottom: 3rem;
   }
 
+  .cart-card {
+    width: auto;
+  }
+
+  .cart-img-div img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+    height: 240px;
+    position: relative;
+  }
+
+  .cart-summary-aside {
+    font-family: "Inter", sans-serif;
+    padding: 2rem 1.5rem;
+    width: 100%;
+    box-shadow: 1rem 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  }
 }

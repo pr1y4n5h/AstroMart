@@ -81,7 +81,7 @@ export function Navbar() {
             {isUserLogin ? "Log Out" : "Log In"}
           </button>
         </div>
-        <div className="nav-icons">
+        <div className="nav-icons" >
           <NavLink className="nav-icon" to="/wishlist">
             <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
           </NavLink>

@@ -1,28 +1,26 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../Contexts/AuthContext";
-import {useLocation, useNavigate} from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import {useScrollToTop} from "../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 export const LoginPage = () => {
-  useScrollToTop();
+  useScrollToTop(); 
 
-  const { loginUserWithCreds } = useAuth();
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const [credentials, setCredentials] = useState({
-    username: "",
-    password: ""
-  });
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [])
+
+
+  const { loginUserWithCreds, credentials, setCredentials } = useAuth();
   const [isVisible, setVisible] = useState(false)
 
   async function loginHandler() {
     const {username, password} = credentials;
     loginUserWithCreds(username, password)
-
-    // navigate(state?.from ? state.from : "/")
   }
 
   return (
@@ -34,7 +32,7 @@ export const LoginPage = () => {
           <input
             type="text"
             placeholder="Enter Username"
-            autoComplete="off"
+            ref={inputRef}
             value={credentials.username}
             onChange={(event) => setCredentials({...credentials, username: event.target.value})}
           />
@@ -44,7 +42,6 @@ export const LoginPage = () => {
           <input
             type={isVisible ? "text" : "password"}
             placeholder="Enter Password"
-            autoComplete="off"
             value={credentials.password}
             onChange={(event) => setCredentials({...credentials, password: event.target.value})}
           />
@@ -56,7 +53,6 @@ export const LoginPage = () => {
           <span > Login as Guest </span>
         </div>
       </div>
-
     </div>
   );
 };

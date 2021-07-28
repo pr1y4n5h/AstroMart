@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useAuth } from "../Contexts/AuthContext";
 import { useMainContext } from "../Contexts/MainContext";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -13,6 +12,13 @@ import { toastSuccessText, toastFailText } from "../Components/Toast";
 
 export const SignupPage = () => {
   useScrollToTop();
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [])
+
   const { dispatchMain } = useMainContext();
   const [user, setUser] = useState({
     name: "",
@@ -44,7 +50,13 @@ export const SignupPage = () => {
         return navigate("/login");
       }
     } catch (error) {
-      toastFailText("Something went wrong!");
+      if (error.response.status === 422) {
+        toastFailText("Username/password already exists!");
+      } else if (error.response.status === 409) {
+        toastFailText(error.response.data.message);
+      } else {
+        toastFailText("Something went wrong! Please try later...");
+      }
     } finally {
       dispatchMain({ type: "SET_LOADER" });
     }
@@ -59,8 +71,8 @@ export const SignupPage = () => {
             <RiContactsFill />
             <input
               type="text"
+              ref={inputRef}
               placeholder="Your Name"
-              autoComplete="off"
               value={user.name}
               onChange={(event) =>
                 setUser({ ...user, name: event.target.value })
@@ -72,7 +84,6 @@ export const SignupPage = () => {
             <input
               type="text"
               placeholder="Your Username"
-              autoComplete="off"
               value={user.username}
               onChange={(event) =>
                 setUser({ ...user, username: event.target.value })
@@ -84,7 +95,6 @@ export const SignupPage = () => {
             <input
               type="text"
               placeholder="Your Email address"
-              autoComplete="off"
               value={user.email}
               onChange={(event) =>
                 setUser({ ...user, email: event.target.value })
@@ -96,7 +106,6 @@ export const SignupPage = () => {
             <input
               type={isVisible ? "text" : "password"}
               placeholder="Your Password"
-              autoComplete="off"
               value={user.password}
               onChange={(event) =>
                 setUser({ ...user, password: event.target.value })
