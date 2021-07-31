@@ -1,17 +1,73 @@
 import React from "react";
 import "../App.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { Link } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
+import { toastSuccessText, toastFailText } from "../Components/Toast";
+import { useMainContext } from "../Contexts/MainContext";
+import { useAuth } from "../Contexts/AuthContext";
+import { addToWishlist, removeFromWishlist } from "../API/Wishlist";
 
-export const ProductsCard = ({ products }) => {
-  const { _id, name, image, price, off, rating, stock, deluxe } = products;
-  const { dispatchProduct } = useProducts();
+export function WishlistButton({ buttonID }) {
+  const { isUserLogin, loggedUserInfo } = useAuth();
+  const { dispatchProduct, wishlist } = useProducts();
 
-  return ( 
+  function checkWishlist(productID, wishlist) {
+    return wishlist.some((item) => item.product._id === productID);
+  }
+
+  const isWishlisted = checkWishlist(buttonID, wishlist);
+
+   async function wishlistHandler() {
+    if (isUserLogin) {
+      // console.log(wishlist);
+
+      console.log(isWishlisted)
+      if(isWishlisted)
+      {
+        await removeFromWishlist(loggedUserInfo._id, buttonID)
+        dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
+        
+      }
+      else {
+        await addToWishlist(loggedUserInfo._id, buttonID);
+        dispatchProduct({ type: "ADD_TO_WISHLIST" });
+        
+      }
+    } else {
+      toastFailText("Please login to proceed!");
+    }
+  }
+
+  return (
+    <>
+      <span className="card-wishlist-btn" onClick={wishlistHandler}>
+
+      {
+        isWishlisted ?  <FavoriteIcon style={{ color: "#fb3958" }}  /> : <FavoriteBorderIcon style={{ color: "#fb3958" }} />
+      }
+        
+      </span>
+    </>
+  );
+}
+
+export const ProductsCard = ({ product }) => {
+  const { _id, name, image, price, off, rating, stock, deluxe } = product;
+
+  const { dispatchProduct, wishlist } = useProducts();
+  const { products } = useMainContext();
+
+  return (
     <div className="product-card">
-    <div class="ribbon" style={!deluxe ? {display:"none"} : {display:"block"}} ><span>Deluxe</span></div>
+      <div
+        class="ribbon"
+        style={!deluxe ? { display: "none" } : { display: "block" }}
+      >
+        <span>Deluxe</span>
+      </div>
       <Link to={`/products/${_id}`}>
         <div
           className={`${
@@ -22,11 +78,9 @@ export const ProductsCard = ({ products }) => {
           <span className="sold-text"> SOLD! </span>
         </div>
       </Link>
-      <FavoriteIcon
-            className="card-wishlist-btn"
-            style={{ color: "#fb3958" }}
-            onClick={() => dispatchProduct({type: "ADD_TO_WISHLIST", payload: products }) }
-          />
+
+      <WishlistButton buttonID={_id} />
+
       <div className="product-card-body">
         <div className="product-name"> {name} </div>
         <div className="product-card-details">
@@ -54,7 +108,7 @@ export const ProductsCard = ({ products }) => {
           <button
             className="primary-btn-1"
             onClick={() =>
-              dispatchProduct({ type: "ADD_TO_CART", payload: products })
+              dispatchProduct({ type: "ADD_TO_CART", payload: product })
             }
           >
             Add to Cart

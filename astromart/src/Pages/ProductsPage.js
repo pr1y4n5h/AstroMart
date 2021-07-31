@@ -6,12 +6,20 @@ import "../App.css";
 import {useFetchProducts} from "../Hooks/useFetchProducts";
 import {MyLoader} from "../Components/Loader";
 import {useScrollToTop} from "../Hooks/useScrollToTop"; 
+import {useAuth} from "../Contexts/AuthContext";
+import {useFetchWishlist} from "../Hooks/useFetchWishlist"
+import {useProducts} from "../Contexts/ProductContext"
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
+  const { isUserLogin } = useAuth();
+  const {wishlist} = useProducts();
 
   useFetchProducts();
   useScrollToTop();
+  useFetchWishlist();
+
+  console.log(wishlist);
 
   function getSorted(products, sortBy) {
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {
@@ -45,7 +53,7 @@ export const ProductsPage = () => {
       <div className="products-container">
       { loader && <MyLoader />}
         {filtered.map((item) => (
-          <ProductsCard key={item._id} products={item} />
+          <ProductsCard key={item._id} product={item} />
         ))}
       </div>
     </div>

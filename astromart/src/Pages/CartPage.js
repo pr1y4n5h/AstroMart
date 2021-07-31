@@ -11,6 +11,7 @@ import { useScrollToTop } from "../Hooks/useScrollToTop";
  
 export const CartPage = () => {
   useScrollToTop();
+  
   const { cart } = useProducts();
   const { loader } = useMainContext();
 

@@ -1,17 +1,43 @@
-// import {useParams } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
+import { toastSuccessText, toastFailText } from "../Components/Toast";
+import { useProducts } from "../Contexts/ProductContext";
 
-// export async function (userId, wishlistId, products, dispatchProduct) {
-//     const {userId} = useParams();
+export async function addToWishlist(userID, productID) {
+  try {
+    const { data, status } = await axios.post(
+      `http://localhost:5000/wishlist/${userID}/${productID}`,
+      {
+        type: "ADD",
+      }
+    );
 
-//     const addCartURL = wishlistId === null ? `http://localhost:5000/wishlist/${userId}` : `http://localhost:5000/wishlist/${userId}/${wishlistId}` 
-//     const {data, status} = await axios.post(addCartURL, {
-//         products
-//     })
+    if (status === 200 && data.success === true) {
+    //   dispatchProduct({ type: "ADD_TO_WISHLIST" });
+      toastSuccessText("Added");
+      console.log(data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-//     if(status === 201 && data.success === true) {
+export async function removeFromWishlist(userID, productID) {
+//   const { dispatchProduct, wishlist } = useProducts();
 
-//     }
+  try {
+    const { data, status } = await axios.post(
+      `http://localhost:5000/wishlist/${userID}/${productID}`,
+      {
+        type: "REMOVE",
+      }
+    );
 
-    
-// }
+    if (status === 200 && data.success === true) {
+    //   dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
+      toastFailText("Removed from Wishlist");
+      console.log(data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

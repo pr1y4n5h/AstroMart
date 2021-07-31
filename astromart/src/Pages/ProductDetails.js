@@ -2,15 +2,66 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import "../App.css";
-import {useMainContext} from "../Contexts/MainContext"
+import {useMainContext} from "../Contexts/MainContext";
+import {useProducts} from "../Contexts/ProductContext"  
 import {useScrollToTop} from "../Hooks/useScrollToTop"
+import axios from "axios";
+import { toastSuccessText, toastFailText } from "../Components/Toast";
+import { useAuth } from "../Contexts/AuthContext";
+import {useFetchWishlist} from "../Hooks/useFetchWishlist"
+
 
 export const ProductDetails = () => {
 
-  useScrollToTop(); 
+  useScrollToTop();
+  useFetchWishlist(); 
 
   const { products } = useMainContext();
+  const { wishlist } = useProducts();
   const { productID } = useParams();
+
+  const { isUserLogin, loggedUserInfo } = useAuth();
+  // const {_id: userId } = loggedUserInfo
+
+    // function checkWishlist(id, wishlist) {
+  //   return wishlist.some(item => item.product._id === id);
+  // }
+  // const isWishlisted = checkWishlist(productID, wishlist)
+
+
+
+  // console.log(isWishlisted)
+  // console.log(wishlist)
+
+  // async function addToWishlist() {
+  //   try {
+  //     const {data, status} = await axios.post(
+  //       `http://localhost:5000/wishlist/${loggedUserInfo.userId}/${products._id}`, {
+  //         type: "ADD"
+  //       }
+  //     );
+  //     if (status === 200) {
+  //       toastSuccessText("Item added to wishlist");
+  //     }
+  //   } catch (error) {
+  //     toastFailText(error.message);
+  //   }
+  // }
+
+  // async function removeFromWishlist() {
+  //   try {
+  //     const {data, status} = await axios.post(
+  //       `http://localhost:5000/wishlist/${userId}/${productID}`, {
+  //         type: "REMOVE"
+  //       }
+  //     );
+  //     if (status === 200) {
+  //       toastSuccessText("Item Removed from Wishlist");
+  //     }
+  //   } catch (error) {
+  //     toastFailText(error.message);
+  //   }
+  // }
 
   const { name, image, price, off, rating, details, category, deluxe } =
     products.find((product) => product._id === productID);
@@ -52,7 +103,7 @@ export const ProductDetails = () => {
 
       <div classname="product-details-buttons" > 
       <button className="primary-btn-1"> Add to Cart </button> 
-      <button className="secondary-btn-1"> Move to Wishlist </button> 
+      {/* <button className="secondary-btn-1" onClick={wishlistHandler} > Move to Wishlist </button>  */}
       </div>
     </div>
     </div>

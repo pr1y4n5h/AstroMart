@@ -1,23 +1,34 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useProducts } from "../Contexts/ProductContext";
+import { useAuth } from "../Contexts/AuthContext";
+import { useMainContext } from "../Contexts/MainContext";
 
 export function useFetchWishlist() {
   const { dispatchProduct, wishlist } = useProducts();
- 
-  async function fetchWishlist() {
-    try {
-      const { status, data } = await axios.get(
-        "http://localhost:5000/wishlist/"
-      );
+  const { isUserLogin, loggedUserInfo } = useAuth();
+  const {dispatchMain} = useMainContext();
 
-      if (success === true && data.status === 200) {
-        dispatchProduct({ type: "ADD_TO_WISHLIST", payload: products });
-        console.log(products);
+  async function fetchWishlist() {
+
+    const fetchWishlistURL = isUserLogin ? `http://localhost:5000/wishlist/${loggedUserInfo._id}` : "http://localhost:5000/wishlist/"
+    
+      try {
+        dispatchMain({type: "SET_LOADER"})
+        const {
+          status,
+          data: { success, wishlist },
+        } = await axios.get(fetchWishlistURL);
+
+        if (status === 200) {
+          dispatchProduct({ type: "FETCH_WISHLIST", payload: wishlist });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
-    }
+      finally {
+        dispatchMain({type: "SET_LOADER"})
+      }
   }
 
   useEffect(() => {

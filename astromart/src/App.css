@@ -364,6 +364,16 @@ fieldset {
 }
 
 
+/* Wishlist page css */
+
+.wishlist-page {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
 
 /* Cart Page CSS */
 
@@ -390,7 +400,6 @@ fieldset {
   position: relative;
   overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
 }
 
 
@@ -603,6 +612,7 @@ fieldset {
 .signup-link {
   color: var(--base-color);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .signup-link:hover {

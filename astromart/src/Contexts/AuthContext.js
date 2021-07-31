@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useMainContext } from "../Contexts/MainContext";
+// import { useMainContext } from "../Contexts/MainContext";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
@@ -13,25 +13,24 @@ export function AuthProvider({ children }) {
     password: ""
   });
 
-  const { isUserLoggedIn, token: savedToken } = JSON.parse(
+  const { isUserLoggedIn, token: savedToken, loggedUserInfo: userData } = JSON.parse(
     localStorage?.getItem("login")
-  ) || { isUserLoggedIn: false, token: null };
+  ) || { isUserLoggedIn: false, token: null, loggedUserInfo: null };
 
   const [isUserLogin, setLogin] = useState(isUserLoggedIn);
   const [token, setToken] = useState(savedToken);
+  const [loggedUserInfo, setLoggedUserInfo] = useState(userData);
   const { state } = useLocation();
   const navigate = useNavigate();
-//   const { dispatchMain } = useMainContext();
+  // const { dispatchMain } = useMainContext();
 
 
-  async function loginUserWithCreds(username, password) {  
+  async function loginUserWithCreds(username, password) {
     try {
       const {username, password} = credentials;
       const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
       if (status === 200) {
         loginUser(data);
-        return navigate(state?.from ? state.from : "/login")
-        console.log(data)
       } else {
         toastFailText("Please check your credentials");
       }
@@ -45,26 +44,43 @@ export function AuthProvider({ children }) {
       else {
         console.log(error);
       }
-    } 
+    }
   }
 
-  function loginUser({token}) {
-    setCredentials("");
+  async function loginUserAsGuest() {
+    try {
+      const {username, password} = {
+        username: "guest",
+        password: "test123" 
+      }
+      const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
+      if (status === 200) {
+        loginUser(data);
+      }
+    } catch (error) {
+        console.log(error);
+      } 
+  }
+
+  function loginUser({token, userData}) {
     setLogin(true);
     setToken(token);
+    setLoggedUserInfo(userData);
     toastSuccessText("You are Logged In now !");
-    localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true, token }));
+    localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true, token, loggedUserInfo: userData }));
+    // navigate(state?.from ? state.from : "/")
   }
 
   async function logOutUser() {
     setLogin(false);
     localStorage.removeItem("login");
+    setLoggedUserInfo(userData);
     setToken(null);
     toastFailText("You are Logged Out !");
   }
 
   return (
-    <AuthContext.Provider value={{ isUserLogin, loginUserWithCreds, logOutUser, token, credentials, setCredentials }}>
+    <AuthContext.Provider value={{ isUserLogin, loginUserWithCreds, loginUserAsGuest, loggedUserInfo, logOutUser, token, credentials, setCredentials }}>
       {children}
     </AuthContext.Provider>
   );

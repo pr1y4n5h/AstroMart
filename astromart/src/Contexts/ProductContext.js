@@ -4,11 +4,17 @@ export const ProductContext = createContext();
 
 const initialState = {
   wishlist: [],
-  cart: []
-}; 
+  cart: [],
+};
 
 function productReducer(state, action) {
   switch (action.type) {
+    case "FETCH_WISHLIST":
+      return {
+        ...state,
+        wishlist: action.payload,
+      };
+
     case "ADD_TO_WISHLIST":
       return {
         ...state,
@@ -18,7 +24,34 @@ function productReducer(state, action) {
     case "REMOVE_FROM_WISHLIST":
       return {
         ...state,
-        wishlist: state.wishlist.filter((item) => item._id !== action.payload),
+        wishlist: state.wishlist.filter((item) => item._id !== action.payload)
+      };
+
+
+      
+
+    case "FETCH_CART":
+      return {
+        ...state,
+        cart: action.payload,
+      };
+
+    case "ADD_TO_cart":
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+      };
+
+    case "INCREMENT_QTY":
+      return {
+        ...state,
+        cart: action.payload,
+      };
+
+    case "DECREMENT_QTY":
+      return {
+        ...state,
+        cart: action.payload,
       };
 
     default:
