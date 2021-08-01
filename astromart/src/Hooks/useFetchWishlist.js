@@ -7,33 +7,33 @@ import { useMainContext } from "../Contexts/MainContext";
 export function useFetchWishlist() {
   const { dispatchProduct, wishlist } = useProducts();
   const { isUserLogin, loggedUserInfo } = useAuth();
-  const {dispatchMain} = useMainContext();
+  const { dispatchMain } = useMainContext();
 
   async function fetchWishlist() {
+    const fetchWishlistURL = isUserLogin
+      ? `http://localhost:5000/wishlist/${loggedUserInfo._id}`
+      : "http://localhost:5000/wishlist/";
 
-    const fetchWishlistURL = isUserLogin ? `http://localhost:5000/wishlist/${loggedUserInfo._id}` : "http://localhost:5000/wishlist/"
-    
-      try {
-        dispatchMain({type: "SET_LOADER"})
-        const {
-          status,
-          data: { success, wishlist },
-        } = await axios.get(fetchWishlistURL);
+    try {
+      dispatchMain({ type: "SET_LOADER" });
+      const {
+        status,
+        data: { success, wishlist },
+      } = await axios.get(fetchWishlistURL);
 
-        if (status === 200) {
-          dispatchProduct({ type: "FETCH_WISHLIST", payload: wishlist });
-        }
-      } catch (err) {
-        console.log(err);
+      if (status === 200) {
+        dispatchProduct({ type: "FETCH_WISHLIST", payload: wishlist });
       }
-      finally {
-        dispatchMain({type: "SET_LOADER"})
-      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatchMain({ type: "SET_LOADER" });
+    }
   }
 
   useEffect(() => {
     if (wishlist.length === 0) {
       fetchWishlist();
     }
-  }, []);
+  }, [wishlist]);
 }

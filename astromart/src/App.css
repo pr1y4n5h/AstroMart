@@ -130,9 +130,20 @@ fieldset {
   cursor: pointer;
 }
 
-.empty-container {
-  display: flex;
-  justify-content: center;
+.empty-page {
+ height: 40vh;
+ border: 1px solid;
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+
+.empty-container > h1 {
+  margin-bottom: 5rem;;
+}
+
+.empty-page-btn {
+  margin-top: 5rem;
 }
 
 /* Product Card CSS */
@@ -653,6 +664,9 @@ fieldset {
   height: 60vh;
   z-index: 10;
 }
+
+
+
 
 @media screen and (max-width: 768px) {
   .nav-burger {

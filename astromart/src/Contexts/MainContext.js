@@ -75,6 +75,7 @@ function mainReducer(state, action) {
 }
 
 export function MainProvider({ children }) {
+
   const [state, dispatchMain] = useReducer(mainReducer, initialState);
 
   return (

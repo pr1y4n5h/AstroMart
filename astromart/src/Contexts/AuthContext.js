@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
+import {useProducts} from "./ProductContext"
 
 export const AuthContext = createContext();
 
@@ -22,6 +23,7 @@ export function AuthProvider({ children }) {
   const [loggedUserInfo, setLoggedUserInfo] = useState(userData);
   const { state } = useLocation();
   const navigate = useNavigate();
+
   // const { dispatchMain } = useMainContext();
 
 

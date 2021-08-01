@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Sidebar } from "../Components/Sidebar";
 import { useMainContext } from "../Contexts/MainContext";
 import { ProductsCard } from "../Components/ProductsCard";
@@ -9,17 +9,19 @@ import {useScrollToTop} from "../Hooks/useScrollToTop";
 import {useAuth} from "../Contexts/AuthContext";
 import {useFetchWishlist} from "../Hooks/useFetchWishlist"
 import {useProducts} from "../Contexts/ProductContext"
+import {usePageTitle} from "../Hooks/usePageTitle";
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
   const { isUserLogin } = useAuth();
   const {wishlist} = useProducts();
+  usePageTitle("AstroMart || Products")
 
   useFetchProducts();
   useScrollToTop();
   useFetchWishlist();
 
-  console.log(wishlist);
+  // console.log(wishlist);
 
   function getSorted(products, sortBy) {
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {

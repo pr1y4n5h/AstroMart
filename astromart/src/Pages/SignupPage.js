@@ -9,13 +9,17 @@ import { HiMail } from "react-icons/hi";
 import { RiContactsFill } from "react-icons/ri";
 import axios from "axios";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
+import {usePageTitle} from "../Hooks/usePageTitle";
+
 
 export const SignupPage = () => {
+
   useScrollToTop();
+  usePageTitle("AstroMart || Sign up")
 
   const inputRef = useRef(null);
 
-  useEffect(() => {
+  useEffect(() => {  
     inputRef.current.focus();
   }, [])
 

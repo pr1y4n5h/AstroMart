@@ -5,12 +5,17 @@ import { useScrollToTop } from "../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
 import {MyLoader} from "../Components/Loader"
 import {useMainContext} from "../Contexts/MainContext"
-
+import {useProducts} from "../Contexts/ProductContext"
+import React from "react";
+import {usePageTitle} from "../Hooks/usePageTitle";
  
 export const LoginPage = () => {
   useScrollToTop();
+  usePageTitle("AstroMart || Login")
+  const {wishlist, dispatchProduct} = useProducts();
 
   const inputRef = useRef(null);
+
 
   useEffect(() => {
     inputRef.current.focus();
@@ -21,14 +26,11 @@ export const LoginPage = () => {
   const [isVisible, setVisible] = useState(false);
   const {loader} = useMainContext();
 
-  
-
   async function loginHandler() {
     loginUserWithCreds(username, password);
   }
 
   console.log(loggedUserInfo);
-
   // console.log(loggedUserInfo);
 
   async function loginAsGuestHandler() {

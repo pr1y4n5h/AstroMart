@@ -8,10 +8,13 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { Link } from "react-router-dom";
 import { useScrollToTop } from "../Hooks/useScrollToTop";
+import {usePageTitle} from "../Hooks/usePageTitle";
  
 export const CartPage = () => {
+
   useScrollToTop();
-  
+  usePageTitle("AstroMart || My Cart")
+
   const { cart } = useProducts();
   const { loader } = useMainContext();
 

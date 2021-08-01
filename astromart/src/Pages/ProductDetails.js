@@ -10,7 +10,6 @@ import { toastSuccessText, toastFailText } from "../Components/Toast";
 import { useAuth } from "../Contexts/AuthContext";
 import {useFetchWishlist} from "../Hooks/useFetchWishlist"
 
-
 export const ProductDetails = () => {
 
   useScrollToTop();
@@ -22,46 +21,6 @@ export const ProductDetails = () => {
 
   const { isUserLogin, loggedUserInfo } = useAuth();
   // const {_id: userId } = loggedUserInfo
-
-    // function checkWishlist(id, wishlist) {
-  //   return wishlist.some(item => item.product._id === id);
-  // }
-  // const isWishlisted = checkWishlist(productID, wishlist)
-
-
-
-  // console.log(isWishlisted)
-  // console.log(wishlist)
-
-  // async function addToWishlist() {
-  //   try {
-  //     const {data, status} = await axios.post(
-  //       `http://localhost:5000/wishlist/${loggedUserInfo.userId}/${products._id}`, {
-  //         type: "ADD"
-  //       }
-  //     );
-  //     if (status === 200) {
-  //       toastSuccessText("Item added to wishlist");
-  //     }
-  //   } catch (error) {
-  //     toastFailText(error.message);
-  //   }
-  // }
-
-  // async function removeFromWishlist() {
-  //   try {
-  //     const {data, status} = await axios.post(
-  //       `http://localhost:5000/wishlist/${userId}/${productID}`, {
-  //         type: "REMOVE"
-  //       }
-  //     );
-  //     if (status === 200) {
-  //       toastSuccessText("Item Removed from Wishlist");
-  //     }
-  //   } catch (error) {
-  //     toastFailText(error.message);
-  //   }
-  // }
 
   const { name, image, price, off, rating, details, category, deluxe } =
     products.find((product) => product._id === productID);
@@ -76,7 +35,6 @@ export const ProductDetails = () => {
         <div class="ribbon" style={!deluxe ? {display:"none"} : {display:"block"}} ><span>Deluxe</span></div>
 
       </div>
-
 
       <div className="product-details-content">
         <span className="product-details-heading"> {name} </span>

@@ -4,18 +4,16 @@ import "../App.css";
 import { FaRocket, FaBars } from "react-icons/fa";
 import { useTheme } from "../Contexts/ThemeContext";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
-import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
-
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
-
 import Brightness4RoundedIcon from "@material-ui/icons/Brightness4Rounded";
 import { useAuth } from "../Contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useProducts } from "../Contexts/ProductContext";
 
 export function Navbar() {
   const { isUserLogin, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
+  const { wishlist, dispatchProduct } = useProducts();
   const navigate = useNavigate();
 
   function logInHandler() {
@@ -24,6 +22,7 @@ export function Navbar() {
 
   function logOutHandler() {
     logOutUser();
+    dispatchProduct({ type: "FLUSH_WISHLIST" });
   }
 
   return (
@@ -58,17 +57,11 @@ export function Navbar() {
           >
             Products
           </NavLink>
-          {/* <NavLink
-            className="nav-btn"
-            to="/contact-us"
-            activeStyle={{ color: "var(--primary-color)" }}
-          >
-            Contact Us
-          </NavLink> */}
           <NavLink
             className="nav-btn"
             to="/sign-up"
             activeStyle={{ color: "var(--primary-color)" }}
+            style={isUserLogin && { display: "none" }}
           >
             Sign up
           </NavLink>
@@ -81,9 +74,11 @@ export function Navbar() {
             {isUserLogin ? "Log Out" : "Log In"}
           </button>
         </div>
-        <div className="nav-icons" >
+
+        <div className="nav-icons">
           <NavLink className="nav-icon" to="/wishlist">
             <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
+            {wishlist.length}
           </NavLink>
           <NavLink className="nav-icon" to="/cart">
             <ShoppingCartOutlinedIcon />

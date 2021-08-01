@@ -12,7 +12,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useFetchWishlist } from "../Hooks/useFetchWishlist";
 import { ProductsCard } from "../Components/ProductsCard";
 import {useMainContext} from "../Contexts/MainContext";
-import {MyLoader} from "../Components/Loader"
+import {MyLoader} from "../Components/Loader";
+import {usePageTitle} from "../Hooks/usePageTitle";
+
 
 
 export const WishlistPage = () => {
@@ -23,7 +25,7 @@ export const WishlistPage = () => {
   const { wishlist } = useProducts();
   const {loader, products} = useMainContext();
 
-  
+  usePageTitle("AstroMart || My Wishlist")
   useFetchWishlist();
 
   // console.log(wishlist);
@@ -55,7 +57,7 @@ export const WishlistPage = () => {
   return (
     <div className="wishlist-page">
     {/* { loader && <MyLoader />} */}
-      {wishlist.map((item) => <ProductsCard product={item.product}/>)}
+      {wishlist.length > 0 ? wishlist.map((item) => <ProductsCard product={item.product}/>) : <Empty component="Wishlist" /> }
     </div>
   );
 };

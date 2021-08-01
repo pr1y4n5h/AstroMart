@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
+import {useFetchWishlist} from "../Hooks/useFetchWishlist";
 
 export const ProductContext = createContext();
 
@@ -27,32 +28,34 @@ function productReducer(state, action) {
         wishlist: state.wishlist.filter((item) => item._id !== action.payload)
       };
 
+      case "FLUSH_WISHLIST":
+        return {
+          wishlist: ""
+        }
 
-      
+    // case "FETCH_CART":
+    //   return {
+    //     ...state,
+    //     cart: action.payload,
+    //   };
 
-    case "FETCH_CART":
-      return {
-        ...state,
-        cart: action.payload,
-      };
+    // case "ADD_TO_cart":
+    //   return {
+    //     ...state,
+    //     cart: [...state.cart, action.payload],
+    //   };
 
-    case "ADD_TO_cart":
-      return {
-        ...state,
-        cart: [...state.cart, action.payload],
-      };
+    // case "INCREMENT_QTY":
+    //   return {
+    //     ...state,
+    //     cart: action.payload,
+    //   };
 
-    case "INCREMENT_QTY":
-      return {
-        ...state,
-        cart: action.payload,
-      };
-
-    case "DECREMENT_QTY":
-      return {
-        ...state,
-        cart: action.payload,
-      };
+    // case "DECREMENT_QTY":
+    //   return {
+    //     ...state,
+    //     cart: action.payload,
+    //   };
 
     default:
       return state;
@@ -61,6 +64,8 @@ function productReducer(state, action) {
 
 export function ProductProvider({ children }) {
   const [state, dispatchProduct] = useReducer(productReducer, initialState);
+
+  // useFetchWishlist();
 
   return (
     <ProductContext.Provider value={{ ...state, dispatchProduct }}>

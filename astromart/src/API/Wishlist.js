@@ -12,7 +12,6 @@ export async function addToWishlist(userID, productID) {
     );
 
     if (status === 200 && data.success === true) {
-    //   dispatchProduct({ type: "ADD_TO_WISHLIST" });
       toastSuccessText("Added");
       console.log(data);
     }
@@ -22,8 +21,6 @@ export async function addToWishlist(userID, productID) {
 }
 
 export async function removeFromWishlist(userID, productID) {
-//   const { dispatchProduct, wishlist } = useProducts();
-
   try {
     const { data, status } = await axios.post(
       `http://localhost:5000/wishlist/${userID}/${productID}`,
@@ -33,7 +30,6 @@ export async function removeFromWishlist(userID, productID) {
     );
 
     if (status === 200 && data.success === true) {
-    //   dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
       toastFailText("Removed from Wishlist");
       console.log(data);
     }

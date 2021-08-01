@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { Link } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
@@ -14,41 +14,40 @@ export function WishlistButton({ buttonID }) {
   const { isUserLogin, loggedUserInfo } = useAuth();
   const { dispatchProduct, wishlist } = useProducts();
 
-  function checkWishlist(productID, wishlist) {
-    return wishlist.some((item) => item.product._id === productID);
-  }
+  async function wishlistHandler() {
 
-  const isWishlisted = checkWishlist(buttonID, wishlist);
-
-   async function wishlistHandler() {
-    if (isUserLogin) {
-      // console.log(wishlist);
-
-      console.log(isWishlisted)
-      if(isWishlisted)
-      {
-        await removeFromWishlist(loggedUserInfo._id, buttonID)
-        dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
-        
-      }
-      else {
-        await addToWishlist(loggedUserInfo._id, buttonID);
-        dispatchProduct({ type: "ADD_TO_WISHLIST" });
-        
-      }
-    } else {
-      toastFailText("Please login to proceed!");
+    function checkWishlist(productID, wishlist) {
+      return wishlist.some((item) => item.product._id === productID);
     }
+
+    const isWishlisted = checkWishlist(buttonID, wishlist);
+
+    if(isUserLogin) {
+
+      if (isWishlisted) {
+        removeFromWishlist(loggedUserInfo._id, buttonID)
+        dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
+      } else {
+        addToWishlist(loggedUserInfo._id, buttonID);
+        dispatchProduct({ type: "ADD_TO_WISHLIST" });
+      }
+    }
+
+    else {
+    toastFailText("Please login")
+    }
+    
   }
 
   return (
     <>
       <span className="card-wishlist-btn" onClick={wishlistHandler}>
-
-      {
-        isWishlisted ?  <FavoriteIcon style={{ color: "#fb3958" }}  /> : <FavoriteBorderIcon style={{ color: "#fb3958" }} />
-      }
-        
+        {/* {isWishlisted ? (
+          <FavoriteIcon style={{ color: "#fb3958" }} />
+        ) : (
+          <FavoriteBorderIcon style={{ color: "#fb3958" }} />
+        )} */}
+        Wishlist
       </span>
     </>
   );
