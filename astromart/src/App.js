@@ -12,7 +12,6 @@ import {PrivateRoute} from "./PrivateRoute";
 import { ToastContainer } from "react-toastify";
 import {ErrorPage} from "./Pages/ErrorPage"
 
-
 export default function App() {
   return (
     <div className="App">
@@ -24,10 +23,10 @@ export default function App() {
         <Route path="/products/:productID" element={<ProductDetails /> } />
         <Route path="/sign-up" element={<SignupPage />} />
         {/* <Route path="/cart" element={<CartPage />} /> */}
-        <Route path="/wishlist" element={<WishlistPage />} />
+        {/* <Route path="/wishlist" element={<WishlistPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         <PrivateRoute path="/cart" element={<CartPage />} />
-        {/* <PrivateRoute path="/wishlist" element={<WishlistPage />} /> */}
+        <PrivateRoute path="/wishlist" element={<WishlistPage />} />
         <Route path="*" element={<ErrorPage />} /> 
         </Routes>
       </main>

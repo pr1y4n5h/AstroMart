@@ -13,8 +13,9 @@ import { useProducts } from "../Contexts/ProductContext";
 export function Navbar() {
   const { token, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
-  const { wishlist, dispatchProduct, cart } = useProducts();
+  const { wishlist, cart } = useProducts();
   const navigate = useNavigate();
+  const {state} = useLocation();
 
   function logInHandler() {
     navigate("/login");
@@ -22,6 +23,7 @@ export function Navbar() {
 
   function logOutHandler() {
     logOutUser();
+    navigate(state?.from ? state.from : "/")
   }
 
   return (
@@ -79,14 +81,14 @@ export function Navbar() {
             <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
             
             {
-              wishlist.length > 0 &&
+              wishlist?.length > 0 && token &&
               <span className="item-count">{wishlist.length}</span>
             }
           </NavLink>
           <NavLink className="nav-icon" to="/cart">
             <ShoppingCartOutlinedIcon />
             {
-              cart.length > 0 &&
+              cart?.length > 0 &&  token &&
               <span className="item-count">{cart.length}</span>
             } 
           </NavLink>

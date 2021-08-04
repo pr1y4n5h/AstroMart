@@ -7,52 +7,8 @@ import { Link } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
 import { useAuth } from "../Contexts/AuthContext";
-import { addToWishlist, removeFromWishlist } from "../API/Wishlist";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-
-
-// export function WishlistButton({ buttonID }) {
-//   const { isUserLogin, loggedUser } = useAuth();
-//   const { dispatchProduct, wishlist } = useProducts();
-
-//   async function wishlistHandler() {
-
-//     function checkWishlist(productID, wishlist) {
-//       return wishlist?.find((item) => item.product._id === productID);
-//     }
-
-//     const isWishlisted = checkWishlist(buttonID, wishlist);
-
-//     if(isUserLogin) {
-
-//       if (isWishlisted) {
-//         removeFromWishlist(loggedUser._id, buttonID)
-//         dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
-//       } else {
-//         addToWishlist(loggedUser._id, buttonID);
-//         dispatchProduct({ type: "ADD_TO_WISHLIST" });
-//       }
-//     }
-
-//     else {
-//     toastFailText("Please login")
-//     }
-//   }
-
-//   return (
-//     <>
-//       <span className="card-wishlist-btn" onClick={wishlistHandler}>
-//         {/* {isWishlisted ? (
-//           <FavoriteIcon style={{ color: "#fb3958" }} />
-//         ) : (
-//           <FavoriteBorderIcon style={{ color: "#fb3958" }} />
-//         )} */}
-//         Wishlist
-//       </span>
-//     </>
-//   );
-// }
 
 export const ProductsCard = ({ product }) => {
 

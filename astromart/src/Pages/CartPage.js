@@ -2,26 +2,17 @@ import React from "react";
 import { useProducts } from "../Contexts/ProductContext";
 import "../App.css";
 import { Empty } from "../Components/Empty";
-import { products } from "../data";
-import { Link } from "react-router-dom";
 import { useScrollToTop } from "../Hooks/useScrollToTop";
 import {usePageTitle} from "../Hooks/usePageTitle";
 import {CartCard} from "../Components/CartCard/CartCard"
 import {CartSummary} from "../Components/CartSummary";
-import axios from "axios";
  
 export const CartPage = () => {
 
   useScrollToTop();
   usePageTitle("AstroMart || My Cart")
 
-  const { cart, dispatchProduct } = useProducts();
-
-  const {off, price} = products;
-
-  const mrp = Math.round((price*100)/(100-off));
-  const savings = Math.round(mrp - price);
-
+  const { cart } = useProducts();
 
   return ( 
     <div>

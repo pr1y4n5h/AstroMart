@@ -4,7 +4,7 @@ import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import axios from "axios";
 import {useProducts} from "../../Contexts/ProductContext"
 import {useAuth} from "../../Contexts/AuthContext";
-import { toastSuccessText, toastFailText } from "../../Components/Toast";
+import { toastFailText } from "../../Components/Toast";
 
 export const CartCard = ({ product }) => {
 

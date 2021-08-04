@@ -1,22 +1,19 @@
 import { useState, useRef, useEffect } from "react";
-import { useAuth } from "../Contexts/AuthContext"; 
+import { useAuth } from "../Contexts/AuthContext";
 import { NavLink } from "react-router-dom";
 import { useScrollToTop } from "../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
-import {MyLoader} from "../Components/Loader"
-import {useMainContext} from "../Contexts/MainContext"
-import {useProducts} from "../Contexts/ProductContext"
+import { MyLoader } from "../Components/Loader";
+import { useMainContext } from "../Contexts/MainContext";
+import { useProducts } from "../Contexts/ProductContext";
 import React from "react";
-import {usePageTitle} from "../Hooks/usePageTitle";
+import { usePageTitle } from "../Hooks/usePageTitle";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
- 
 export const LoginPage = () => {
-
   useScrollToTop();
-  usePageTitle("AstroMart || Login")
-  const {wishlist, dispatchProduct} = useProducts();
+  usePageTitle("AstroMart || Login");
 
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -27,7 +24,8 @@ export const LoginPage = () => {
     inputRef.current.focus();
   }, []);
 
-  const { loginUserWithCreds, loginUserAsGuest, loggedUserInfo, credentials, setCredentials } = useAuth();
+  const { loginUserWithCreds, loginUserAsGuest, credentials, setCredentials } =
+    useAuth();
   const [isVisible, setVisible] = useState(false);
   // const {loader} = useMainContext();
 
@@ -35,26 +33,24 @@ export const LoginPage = () => {
     const { username, password } = credentials;
     try {
       const response = await loginUserWithCreds(username, password);
-      if(response.success === true) {
-        toastSuccessText("You are Logged In now !");
-        setCredentials("")
-        navigate(state?.from ? state.from : "/")
+      if (response.success === true) {
+        setCredentials("");
+        navigate(state?.from ? state.from : "/");
       }
-    }
-    catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   }
 
-  // console.log(loggedUserInfo);
-
   async function loginAsGuestHandler() {
-    loginUserAsGuest();
+    await loginUserAsGuest();
+    toastSuccessText("You are Logged In now !");
+    navigate(state?.from ? state.from : "/");
   }
 
   return (
     <div className="login-page-box">
-    {/* {loader && <MyLoader />} */}
+      {/* {loader && <MyLoader />} */}
       <div className="login-box">
         <h1 className="login-heading">Login</h1>
         <div className="credentials">
@@ -93,7 +89,9 @@ export const LoginPage = () => {
           <NavLink className="signup-link" to="/sign-up">
             Don't have account?
           </NavLink>
-          <span className="signup-link" onClick={loginAsGuestHandler}> Login as Guest </span>
+          <span className="signup-link" onClick={loginAsGuestHandler}>
+            Login as Guest
+          </span>
         </div>
       </div>
     </div>

@@ -12,7 +12,6 @@ import {usePageTitle} from "../Hooks/usePageTitle";
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
-  const { isUserLogin } = useAuth();
   const {products, wishlist, loader } = useProducts();
   usePageTitle("AstroMart || Products")
   useFetchProducts();

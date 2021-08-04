@@ -32,8 +32,6 @@ export const Sidebar = () => {
             <legend className="sidebar-legend"> Filter </legend>
             <span className="sidebar-heading" >Category</span>
 
-            {/* <label for="points">Points (between 0 and 10):</label>
-<input type="range" id="points" name="points" min="0" max="10"></input> */}
 
             <div className="sort-div"> 
             <label className="sidebar-label">

@@ -1,10 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
-// import { useMainContext } from "../Contexts/MainContext";
+import { createContext, useContext, useState } from "react";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
 import axios from "axios";
 import {useProducts} from "./ProductContext"
 
 export const AuthContext = createContext();
+
 
 export function AuthProvider({ children }) {
 
@@ -18,8 +18,6 @@ export function AuthProvider({ children }) {
 
   const [token, setToken] = useState(savedToken);
   const [loggedUser, setLoggedUser] = useState(userData);
-  
-
 
   // if (token) {
   //   console.log("token set");
@@ -52,9 +50,9 @@ export function AuthProvider({ children }) {
       if(error.response.status === 409) {
         toastFailText("Please fill complete credentials!");
       }
-      // else if(error.response.status === 401) {
-      //   toastFailText("Invalid credentials!!!");
-      // }
+      else if(error.response.status === 401) {
+        toastFailText("Invalid credentials!!!");
+      }
       else {
         console.log(error);
       }
@@ -65,12 +63,11 @@ export function AuthProvider({ children }) {
     try {
       const {username, password} = {
         username: "guest",
-        password: "test123" 
+        password: "test@123" 
       }
-      const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
+      const {data, status} = await axios.post("http://localhost:5000/login", { username, password } );
       if (status === 200) {
         loginUser(data);
-        return { status, success: data.success }
       }
     } catch (error) {
         console.log(error);
@@ -82,7 +79,6 @@ export function AuthProvider({ children }) {
     setLoggedUser(userData);
     localStorage?.setItem("token", JSON.stringify(token));
     localStorage?.setItem("user", JSON.stringify(userData))
-    
   }
 
   async function logOutUser() {

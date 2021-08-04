@@ -2,7 +2,7 @@ import React from "react";
 import { useProducts } from "../Contexts/ProductContext";
 
 export const CartSummary = () => {
-  const { cart, cartTotal, cartItem, cartQty } = useProducts();
+  const { cartTotal } = useProducts();
 
   return (
     <>
