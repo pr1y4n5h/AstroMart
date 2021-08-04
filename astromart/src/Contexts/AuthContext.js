@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 // import { useMainContext } from "../Contexts/MainContext";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
 import axios from "axios";
-import {useLocation, useNavigate} from "react-router-dom";
 import {useProducts} from "./ProductContext"
 
 export const AuthContext = createContext();
@@ -14,17 +13,29 @@ export function AuthProvider({ children }) {
     password: ""
   });
 
-  const { isUserLoggedIn, token: savedToken, loggedUserInfo: userData } = JSON.parse(
-    localStorage?.getItem("login")
-  ) || { isUserLoggedIn: false, token: null, loggedUserInfo: null };
+  const userData = JSON.parse(localStorage?.getItem("user"));
+  const savedToken = JSON.parse(localStorage?.getItem("token"))
 
-  const [isUserLogin, setLogin] = useState(isUserLoggedIn);
   const [token, setToken] = useState(savedToken);
-  const [loggedUserInfo, setLoggedUserInfo] = useState(userData);
-  const { state } = useLocation();
-  const navigate = useNavigate();
+  const [loggedUser, setLoggedUser] = useState(userData);
+  
 
-  // const { dispatchMain } = useMainContext();
+
+  // if (token) {
+  //   console.log("token set");
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  // }
+
+  // axios.interceptors.response.use(undefined, function (error) {
+  //   if (
+  //     error.response.status === 401 ||
+  //     error.response.status === 403 ||
+  //     error.response.data.message === "Invalid Token"
+  //   ) {
+  //     logOutUser();
+  //   }
+  //   return Promise.reject(error);
+  // });
 
 
   async function loginUserWithCreds(username, password) {
@@ -33,6 +44,7 @@ export function AuthProvider({ children }) {
       const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
       if (status === 200) {
         loginUser(data);
+        return { status, success: data.success, user: data.userData }
       } else {
         toastFailText("Please check your credentials");
       }
@@ -40,9 +52,9 @@ export function AuthProvider({ children }) {
       if(error.response.status === 409) {
         toastFailText("Please fill complete credentials!");
       }
-      else if(error.response.status === 401) {
-        toastFailText("Invalid credentials!!!");
-      }
+      // else if(error.response.status === 401) {
+      //   toastFailText("Invalid credentials!!!");
+      // }
       else {
         console.log(error);
       }
@@ -58,6 +70,7 @@ export function AuthProvider({ children }) {
       const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
       if (status === 200) {
         loginUser(data);
+        return { status, success: data.success }
       }
     } catch (error) {
         console.log(error);
@@ -65,24 +78,23 @@ export function AuthProvider({ children }) {
   }
 
   function loginUser({token, userData}) {
-    setLogin(true);
     setToken(token);
-    setLoggedUserInfo(userData);
-    toastSuccessText("You are Logged In now !");
-    localStorage.setItem("login", JSON.stringify({ isUserLoggedIn: true, token, loggedUserInfo: userData }));
-    // navigate(state?.from ? state.from : "/")
+    setLoggedUser(userData);
+    localStorage?.setItem("token", JSON.stringify(token));
+    localStorage?.setItem("user", JSON.stringify(userData))
+    
   }
 
   async function logOutUser() {
-    setLogin(false);
-    localStorage.removeItem("login");
-    setLoggedUserInfo(userData);
+    localStorage?.removeItem("token");
+    localStorage?.removeItem("user");
+    setLoggedUser(null);
     setToken(null);
     toastFailText("You are Logged Out !");
   }
 
   return (
-    <AuthContext.Provider value={{ isUserLogin, loginUserWithCreds, loginUserAsGuest, loggedUserInfo, logOutUser, token, credentials, setCredentials }}>
+    <AuthContext.Provider value={{ loginUserWithCreds, loginUserAsGuest, loggedUser, logOutUser, token, credentials, setCredentials }}>
       {children}
     </AuthContext.Provider>
   );

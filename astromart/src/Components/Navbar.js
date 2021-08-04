@@ -11,9 +11,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
 
 export function Navbar() {
-  const { isUserLogin, logOutUser } = useAuth();
+  const { token, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
-  const { wishlist, dispatchProduct } = useProducts();
+  const { wishlist, dispatchProduct, cart } = useProducts();
   const navigate = useNavigate();
 
   function logInHandler() {
@@ -22,7 +22,6 @@ export function Navbar() {
 
   function logOutHandler() {
     logOutUser();
-    dispatchProduct({ type: "FLUSH_WISHLIST" });
   }
 
   return (
@@ -61,7 +60,7 @@ export function Navbar() {
             className="nav-btn"
             to="/sign-up"
             activeStyle={{ color: "var(--primary-color)" }}
-            style={isUserLogin && { display: "none" }}
+            style={token && { display: "none" }}
           >
             Sign up
           </NavLink>
@@ -69,19 +68,27 @@ export function Navbar() {
         <div className="signin-btn">
           <button
             className="primary-btn-1"
-            onClick={isUserLogin ? logOutHandler : logInHandler}
+            onClick={token ? logOutHandler : logInHandler}
           >
-            {isUserLogin ? "Log Out" : "Log In"}
+            {token ? "Log Out" : "Log In"}
           </button>
         </div>
 
         <div className="nav-icons">
           <NavLink className="nav-icon" to="/wishlist">
             <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
-            {wishlist.length}
+            
+            {
+              wishlist.length > 0 &&
+              <span className="item-count">{wishlist.length}</span>
+            }
           </NavLink>
           <NavLink className="nav-icon" to="/cart">
             <ShoppingCartOutlinedIcon />
+            {
+              cart.length > 0 &&
+              <span className="item-count">{cart.length}</span>
+            } 
           </NavLink>
           <span
             className="dark-btn"

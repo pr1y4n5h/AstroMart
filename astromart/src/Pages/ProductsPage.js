@@ -7,19 +7,16 @@ import {useFetchProducts} from "../Hooks/useFetchProducts";
 import {MyLoader} from "../Components/Loader";
 import {useScrollToTop} from "../Hooks/useScrollToTop"; 
 import {useAuth} from "../Contexts/AuthContext";
-import {useFetchWishlist} from "../Hooks/useFetchWishlist"
 import {useProducts} from "../Contexts/ProductContext"
 import {usePageTitle} from "../Hooks/usePageTitle";
 
 export const ProductsPage = () => {
-  const { sortBy, showProducts, products, loader, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
+  const { sortBy, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
   const { isUserLogin } = useAuth();
-  const {wishlist} = useProducts();
+  const {products, wishlist, loader } = useProducts();
   usePageTitle("AstroMart || Products")
-
   useFetchProducts();
   useScrollToTop();
-  useFetchWishlist();
 
   // console.log(wishlist);
 

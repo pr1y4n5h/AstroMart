@@ -8,39 +8,53 @@ import {useMainContext} from "../Contexts/MainContext"
 import {useProducts} from "../Contexts/ProductContext"
 import React from "react";
 import {usePageTitle} from "../Hooks/usePageTitle";
+import { toastSuccessText, toastFailText } from "../Components/Toast";
+import {useLocation, useNavigate} from "react-router-dom";
+
  
 export const LoginPage = () => {
+
   useScrollToTop();
   usePageTitle("AstroMart || Login")
   const {wishlist, dispatchProduct} = useProducts();
 
-  const inputRef = useRef(null);
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
+  const inputRef = useRef(null);
 
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
   const { loginUserWithCreds, loginUserAsGuest, loggedUserInfo, credentials, setCredentials } = useAuth();
-  const { username, password } = credentials;
   const [isVisible, setVisible] = useState(false);
-  const {loader} = useMainContext();
+  // const {loader} = useMainContext();
 
   async function loginHandler() {
-    loginUserWithCreds(username, password);
+    const { username, password } = credentials;
+    try {
+      const response = await loginUserWithCreds(username, password);
+      if(response.success === true) {
+        toastSuccessText("You are Logged In now !");
+        setCredentials("")
+        navigate(state?.from ? state.from : "/")
+      }
+    }
+    catch(err) {
+      console.log(err)
+    }
   }
 
-  console.log(loggedUserInfo);
   // console.log(loggedUserInfo);
 
   async function loginAsGuestHandler() {
     loginUserAsGuest();
-    // navigate(state?.from ? state.from : "/")
   }
 
   return (
     <div className="login-page-box">
-    {loader && <MyLoader />}
+    {/* {loader && <MyLoader />} */}
       <div className="login-box">
         <h1 className="login-heading">Login</h1>
         <div className="credentials">

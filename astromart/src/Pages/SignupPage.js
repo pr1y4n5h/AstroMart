@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useAuth } from "../Contexts/AuthContext";
 import { useMainContext } from "../Contexts/MainContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
@@ -15,6 +14,7 @@ import {usePageTitle} from "../Hooks/usePageTitle";
 export const SignupPage = () => {
 
   useScrollToTop();
+
   usePageTitle("AstroMart || Sign up")
 
   const inputRef = useRef(null);

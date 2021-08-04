@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useMainContext } from "../Contexts/MainContext";
-
+import { useProducts } from "../Contexts/ProductContext";
 
 export function useFetchProducts() {
-  const { dispatchMain, products } = useMainContext();
+
+  const { dispatchProduct, products } = useProducts();
 
   async function fetchProducts() {
     
-    dispatchMain({ type: "SET_LOADER" });
+    dispatchProduct({ type: "SET_LOADER" });
 
     try {
       const {
@@ -19,12 +19,12 @@ export function useFetchProducts() {
       );
 
       if (success === true && status === 200) {
-        dispatchMain({ type: "FETCH_PRODUCTS", payload: products });
+        dispatchProduct({ type: "FETCH_PRODUCTS", payload: products });
       }
     } catch (err) {
       console.log(err);
     } finally {
-      dispatchMain({ type: "SET_LOADER" });
+      dispatchProduct({ type: "SET_LOADER" });
     }
   }
 

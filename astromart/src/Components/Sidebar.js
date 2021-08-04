@@ -26,15 +26,6 @@ export const Sidebar = () => {
             </div>
 
             
-
-
-            {/* <span className="sidebar-heading" >Price</span>
-            <div className="sort-div"> 
-            <select className="sidebar-smh" input="text" >
-              <option selected={sortBy && sortBy === "PRICE_LOW_TO_HIGH"} onChange={() => dispatchMain({type: "SORT", payload: "PRICE_LOW_TO_HIGH" })} > Low to High </option>
-              <option selected={sortBy && sortBy === "PRICE_HIGH_TO_LOW"} onChange={() => dispatchMain({type: "SORT", payload: "PRICE_HIGH_TO_LOW" })} > High to Low </option>
-            </select>
-            </div>  */}
           </fieldset>
 
           <fieldset className="filter-fieldset">

@@ -6,58 +6,117 @@ import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { Link } from "react-router-dom";
 import { useProducts } from "../Contexts/ProductContext";
 import { toastSuccessText, toastFailText } from "../Components/Toast";
-import { useMainContext } from "../Contexts/MainContext";
 import { useAuth } from "../Contexts/AuthContext";
 import { addToWishlist, removeFromWishlist } from "../API/Wishlist";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-export function WishlistButton({ buttonID }) {
-  const { isUserLogin, loggedUserInfo } = useAuth();
-  const { dispatchProduct, wishlist } = useProducts();
 
-  async function wishlistHandler() {
+// export function WishlistButton({ buttonID }) {
+//   const { isUserLogin, loggedUser } = useAuth();
+//   const { dispatchProduct, wishlist } = useProducts();
 
-    function checkWishlist(productID, wishlist) {
-      return wishlist.some((item) => item.product._id === productID);
-    }
+//   async function wishlistHandler() {
 
-    const isWishlisted = checkWishlist(buttonID, wishlist);
+//     function checkWishlist(productID, wishlist) {
+//       return wishlist?.find((item) => item.product._id === productID);
+//     }
 
-    if(isUserLogin) {
+//     const isWishlisted = checkWishlist(buttonID, wishlist);
 
-      if (isWishlisted) {
-        removeFromWishlist(loggedUserInfo._id, buttonID)
-        dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
-      } else {
-        addToWishlist(loggedUserInfo._id, buttonID);
-        dispatchProduct({ type: "ADD_TO_WISHLIST" });
-      }
-    }
+//     if(isUserLogin) {
 
-    else {
-    toastFailText("Please login")
-    }
-    
-  }
+//       if (isWishlisted) {
+//         removeFromWishlist(loggedUser._id, buttonID)
+//         dispatchProduct({ type: "REMOVE_FROM_WISHLIST" });
+//       } else {
+//         addToWishlist(loggedUser._id, buttonID);
+//         dispatchProduct({ type: "ADD_TO_WISHLIST" });
+//       }
+//     }
 
-  return (
-    <>
-      <span className="card-wishlist-btn" onClick={wishlistHandler}>
-        {/* {isWishlisted ? (
-          <FavoriteIcon style={{ color: "#fb3958" }} />
-        ) : (
-          <FavoriteBorderIcon style={{ color: "#fb3958" }} />
-        )} */}
-        Wishlist
-      </span>
-    </>
-  );
-}
+//     else {
+//     toastFailText("Please login")
+//     }
+//   }
+
+//   return (
+//     <>
+//       <span className="card-wishlist-btn" onClick={wishlistHandler}>
+//         {/* {isWishlisted ? (
+//           <FavoriteIcon style={{ color: "#fb3958" }} />
+//         ) : (
+//           <FavoriteBorderIcon style={{ color: "#fb3958" }} />
+//         )} */}
+//         Wishlist
+//       </span>
+//     </>
+//   );
+// }
 
 export const ProductsCard = ({ product }) => {
-  const { _id, name, image, price, off, rating, stock, deluxe } = product;
 
-  const { dispatchProduct, wishlist } = useProducts();
-  const { products } = useMainContext();
+    const { token, loggedUser } = useAuth();
+    const { _id, name, image, price, off, rating, stock, deluxe } = product;
+    const { dispatchProduct, products, wishlist, cart } = useProducts();
+    const navigate = useNavigate();
+
+    const isWishlisted = () => wishlist?.some(item => item._id === product._id);
+
+      const wishlistHandler = async () => {
+
+        if(token) {
+          if(isWishlisted()) {
+            try {
+              const response = await axios.post(`http://localhost:5000/wishlist/${loggedUser._id}/${_id}`, {
+                type: "REMOVE"
+              }, { headers: { authorization: token } })
+              dispatchProduct({ type: "REMOVE_FROM_WISHLIST", payload: product})
+              toastFailText("Item removed from Wishlist!")
+              console.log(wishlist)
+            }
+            catch (err) {
+              console.log(err);
+            }
+          }
+          else {
+            try {
+              const response = await axios.post(`http://localhost:5000/wishlist/${loggedUser._id}/${_id}`, {
+                type: "ADD"
+              }, { headers: { authorization: token } })
+              dispatchProduct({ type: "ADD_TO_WISHLIST", payload: product})
+              toastSuccessText("Item added to Wishlist!")
+            }
+            catch (err) {
+              console.log(err);
+            }
+          }
+        }
+        else {
+          toastFailText("Please login to continue!")
+        }
+      }
+
+    const isInCart = cart?.find(item => item._id === product._id );
+
+    const cartHandler = async () => {
+      if(isInCart) {
+        navigate("/cart")
+      } else {
+        try {
+          const response = await axios.post("http://localhost:5000/cart/", {
+            userId: loggedUser._id,
+            product: product._id,
+            quantity: 1,
+          })
+          dispatchProduct({ type: "ADD_TO_CART", payload: product})
+          toastSuccessText("Item Added to Cart!")
+        }
+        catch (err) {
+          console.log(err)
+        }
+      }
+      }
 
   return (
     <div className="product-card">
@@ -77,8 +136,13 @@ export const ProductsCard = ({ product }) => {
           <span className="sold-text"> SOLD! </span>
         </div>
       </Link>
-
-      <WishlistButton buttonID={_id} />
+             <span className="card-wishlist-btn" onClick={wishlistHandler}>
+         {isWishlisted() ? (
+           <FavoriteIcon style={{ color: "#fb3958" }} />
+         ) : (
+           <FavoriteBorderIcon style={{ color: "#fb3958" }} />
+         )}
+       </span>
 
       <div className="product-card-body">
         <div className="product-name"> {name} </div>
@@ -105,12 +169,10 @@ export const ProductsCard = ({ product }) => {
           style={!stock ? { display: "none" } : { display: "null" }}
         >
           <button
-            className="primary-btn-1"
-            onClick={() =>
-              dispatchProduct({ type: "ADD_TO_CART", payload: product })
-            }
+            className={isInCart ? "secondary-btn-1" : "primary-btn-1"}
+            onClick={cartHandler}
           >
-            Add to Cart
+            { isInCart ? "Go to Cart" : "Add to Cart"}
           </button>
         </div>
       </div>

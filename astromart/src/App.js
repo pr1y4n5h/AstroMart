@@ -23,11 +23,11 @@ export default function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:productID" element={<ProductDetails /> } />
         <Route path="/sign-up" element={<SignupPage />} />
-        <Route path="/cart" element={<CartPage />} />
+        {/* <Route path="/cart" element={<CartPage />} /> */}
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <PrivateRoute path="/cart" element={<CartPage />} />
-        <PrivateRoute path="/wishlist" element={<WishlistPage />} /> */}
+        <PrivateRoute path="/cart" element={<CartPage />} />
+        {/* <PrivateRoute path="/wishlist" element={<WishlistPage />} /> */}
         <Route path="*" element={<ErrorPage />} /> 
         </Routes>
       </main>

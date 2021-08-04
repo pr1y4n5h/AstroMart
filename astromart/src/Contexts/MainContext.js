@@ -12,15 +12,10 @@ const initialState = {
   showGadgets: false,
   showJewellery: false,
   showOthers: false,
-  products: [],
-  loader: false,
 };
 
 function mainReducer(state, action) {
   switch (action.type) {
-    case "FETCH_PRODUCTS":
-      return { ...state, products: action.payload };
-
     case "SORT":
       return { ...state, sortBy: action.payload };
 
@@ -65,9 +60,6 @@ function mainReducer(state, action) {
         ...state,
         showOthers: !state.showOthers,
       };
- 
-    case "SET_LOADER":
-      return { ...state, loader: !state.loader };
 
     default:
       return state;
@@ -75,7 +67,6 @@ function mainReducer(state, action) {
 }
 
 export function MainProvider({ children }) {
-
   const [state, dispatchMain] = useReducer(mainReducer, initialState);
 
   return (

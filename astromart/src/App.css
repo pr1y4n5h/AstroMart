@@ -75,6 +75,14 @@
   align-items: center;
   height: 100%;
   padding: 0 1rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.item-count {
+  position: absolute;
+  right: 20%;
+  top: 20%;
 }
 
 .signin-btn {
@@ -188,14 +196,14 @@ fieldset {
   max-width: 100%;
   display: block;
   object-fit: cover;
-  height: 300px;
+  height: 250px;
   opacity: 0.5;
   filter: grayscale(100%);
 }
 
 .product-card-top-nostock > .sold-text {
   position: absolute;
-  top: 10rem;
+  top: 8rem;
   left: 4rem;
   font-family: "Rakkas", cursive;
   font-size: 3rem;
@@ -392,10 +400,9 @@ fieldset {
   margin: 1rem 1rem;
 }
 
-.cart-page {
+.cart-box {
   display: flex;
   flex-wrap: wrap;
-  /* padding: 1rem 1rem; */
   border: 3px solid;
 }
 
@@ -501,15 +508,25 @@ fieldset {
   width: 40%;
   /* border: 2px solid; */
   padding: 2rem 1.5rem;
-  height: 60vh;
+  height: 50vh;
   position: sticky;
   top: 100px;
+  display: flex;
+  flex-direction: column;
   box-shadow: 1rem 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
 }
 
 .cart-summary-heading {
   font-weight: bolder;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-summary-calc {
+  border: 2px solid black;
+  margin: 1rem 1rem;
+  padding: 2rem 2rem;
 }
 
 /* Login Page CSS */
@@ -693,7 +710,7 @@ fieldset {
 
   .nav-icons {
     display: flex;
-    width: 100%;
+    width: 70%;
     justify-content: center;
   }
 
