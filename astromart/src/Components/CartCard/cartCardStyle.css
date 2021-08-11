@@ -1,0 +1,13 @@
+ 
+ .cart-card {
+    margin: 1rem 1rem;
+    height: 400px;
+    width: 650px;
+    box-shadow: 1rem 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+    border-radius: 8px;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+  }

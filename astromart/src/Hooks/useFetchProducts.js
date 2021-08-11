@@ -15,7 +15,7 @@ export function useFetchProducts() {
         status,
         data: { success, products },
       } = await axios.get(
-        "http://localhost:5000/products"
+        "https://astromart-backend.herokuapp.com/products"
       );
 
       if (success === true && status === 200) {

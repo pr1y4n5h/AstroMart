@@ -24,7 +24,7 @@ export const ProductsCard = ({ product }) => {
         if(token) {
           if(isWishlisted()) {
             try {
-              const response = await axios.post(`http://localhost:5000/wishlist/${loggedUser._id}/${_id}`, {
+              const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${_id}`, {
                 type: "REMOVE"
               }, { headers: { authorization: token } })
               dispatchProduct({ type: "REMOVE_FROM_WISHLIST", payload: product})
@@ -37,7 +37,7 @@ export const ProductsCard = ({ product }) => {
           }
           else {
             try {
-              const response = await axios.post(`http://localhost:5000/wishlist/${loggedUser._id}/${_id}`, {
+              const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${_id}`, {
                 type: "ADD"
               }, { headers: { authorization: token } })
               dispatchProduct({ type: "ADD_TO_WISHLIST", payload: product})
@@ -56,11 +56,14 @@ export const ProductsCard = ({ product }) => {
     const isInCart = cart?.find(item => item._id === product._id );
 
     const cartHandler = async () => {
+
+      if(token) {
+
       if(isInCart) {
         navigate("/cart")
       } else {
         try {
-          const response = await axios.post("http://localhost:5000/cart/", {
+          const response = await axios.post("https://astromart-backend.herokuapp.com/cart/", {
             userId: loggedUser._id,
             product: product._id,
             quantity: 1,
@@ -73,6 +76,12 @@ export const ProductsCard = ({ product }) => {
         }
       }
       }
+
+      else {
+        toastFailText("Please login to continue!")
+      }
+
+    }
 
   return (
     <div className="product-card">
@@ -93,7 +102,7 @@ export const ProductsCard = ({ product }) => {
         </div>
       </Link>
              <span className="card-wishlist-btn" onClick={wishlistHandler}>
-         {isWishlisted() ? (
+         {isWishlisted() && token ? (
            <FavoriteIcon style={{ color: "#fb3958" }} />
          ) : (
            <FavoriteBorderIcon style={{ color: "#fb3958" }} />
@@ -125,10 +134,10 @@ export const ProductsCard = ({ product }) => {
           style={!stock ? { display: "none" } : { display: "null" }}
         >
           <button
-            className={isInCart ? "secondary-btn-1" : "primary-btn-1"}
+            className={isInCart && token ? "secondary-btn-1" : "primary-btn-1"}
             onClick={cartHandler}
           >
-            { isInCart ? "Go to Cart" : "Add to Cart"}
+            { isInCart && token ? "Go to Cart" : "Add to Cart"}
           </button>
         </div>
       </div>

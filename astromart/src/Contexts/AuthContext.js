@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
   async function loginUserWithCreds(username, password) {
     try {
       const {username, password} = credentials;
-      const {data, status} = await axios.post("http://localhost:5000/login", { username, password} );
+      const {data, status} = await axios.post("https://astromart-backend.herokuapp.com/login", { username, password} );
       if (status === 200) {
         loginUser(data);
         return { status, success: data.success, user: data.userData }
@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
         username: "guest",
         password: "test@123" 
       }
-      const {data, status} = await axios.post("http://localhost:5000/login", { username, password } );
+      const {data, status} = await axios.post("https://astromart-backend.herokuapp.com/login", { username, password } );
       if (status === 200) {
         loginUser(data);
       }

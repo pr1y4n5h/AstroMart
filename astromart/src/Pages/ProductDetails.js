@@ -31,7 +31,7 @@ export const ProductDetails = () => {
         navigate("/cart")
       } else {
         try {
-          const response = await axios.post("http://localhost:5000/cart/", {
+          const response = await axios.post("https://astromart-backend.herokuapp.com/cart/", {
             product: product._id,
             quantity: 1,
           })
@@ -52,7 +52,7 @@ export const ProductDetails = () => {
 
         if(isWishlisted()) {
           try {
-            const response = await axios.post(`http://localhost:5000/wishlist/${productID}`, {
+            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${productID}`, {
               type: "REMOVE"
             })
             dispatchProduct({ type: "REMOVE_FROM_WISHLIST", payload: product})
@@ -65,7 +65,7 @@ export const ProductDetails = () => {
         }
         else {
           try {
-            const response = await axios.post(`http://localhost:5000/wishlist/${productID}`, {
+            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${productID}`, {
               type: "ADD"
             })
             dispatchProduct({ type: "ADD_TO_WISHLIST", payload: product})

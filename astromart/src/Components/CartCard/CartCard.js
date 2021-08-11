@@ -9,15 +9,15 @@ import { toastFailText } from "../../Components/Toast";
 export const CartCard = ({ product }) => {
 
   const { _id, name, image, price, off, deluxe, category, rating, quantity } = product;
-  const {loggedUser} = useAuth();
-  const {dispatchProduct, cart} = useProducts();
+  const {loggedUser, token} = useAuth();
+  const {dispatchProduct} = useProducts();
 
   const mrp = Math.round((price * 100) / (100 - off));
   const savings = Math.round(mrp - price);
 
   const increaseQty = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/cart/${loggedUser._id}/${_id}`,
+      const response = await axios.post(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}/${_id}`,
         {
           quantity: quantity + 1
         }
@@ -35,7 +35,7 @@ export const CartCard = ({ product }) => {
       toastFailText("Item Removed from Cart!")
     }
     try {
-      const response = await axios.post(`http://localhost:5000/cart/${loggedUser._id}/${_id}`,
+      const response = await axios.post(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}/${_id}`,
         {
           quantity: quantity - 1
         }

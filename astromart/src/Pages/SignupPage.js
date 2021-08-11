@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useMainContext } from "../Contexts/MainContext";
+import { useProducts } from "../Contexts/ProductContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useScrollToTop } from "../Hooks/useScrollToTop";
@@ -14,7 +14,6 @@ import {usePageTitle} from "../Hooks/usePageTitle";
 export const SignupPage = () => {
 
   useScrollToTop();
-
   usePageTitle("AstroMart || Sign up")
 
   const inputRef = useRef(null);
@@ -23,7 +22,7 @@ export const SignupPage = () => {
     inputRef.current.focus();
   }, [])
 
-  const { dispatchMain } = useMainContext();
+  const { dispatchProduct, loader } = useProducts();
   const [user, setUser] = useState({
     name: "",
     username: "",
@@ -35,12 +34,12 @@ export const SignupPage = () => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    dispatchMain({ type: "SET_LOADER" });
+    dispatchProduct({ type: "SET_LOADER" });
     try {
       const { name, username, email, password } = user;
 
       const { data, status } = await axios.post(
-        "http://localhost:5000/sign-up",
+        "https://astromart-backend.herokuapp.com/sign-up",
         {
           name,
           username,
@@ -62,7 +61,7 @@ export const SignupPage = () => {
         toastFailText("Something went wrong! Please try later...");
       }
     } finally {
-      dispatchMain({ type: "SET_LOADER" });
+      dispatchProduct({ type: "SET_LOADER" });
     }
   };
 
@@ -123,7 +122,7 @@ export const SignupPage = () => {
             </span>
           </div>
           <button type="submit" className="login-btn" onClick={registerHandler}>
-            Register
+            {loader ? "Submitting..." : "Register"}
           </button>
           <div className="already-registered">
             <NavLink className="login-link" to="/login">
