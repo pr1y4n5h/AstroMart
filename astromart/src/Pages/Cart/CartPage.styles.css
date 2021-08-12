@@ -1,7 +1,6 @@
 .cart-box {
   display: flex;
   flex-wrap: wrap;
-  border: 3px solid;
 }
 
 .cart-products-div {

@@ -16,7 +16,7 @@ export function Navbar() {
   const { isDark, setDark } = useTheme();
   const { wishlist, cart } = useProducts();
   const navigate = useNavigate();
-  const {state} = useLocation();
+  const { state } = useLocation();
 
   function logInHandler() {
     navigate("/login");
@@ -24,7 +24,7 @@ export function Navbar() {
 
   function logOutHandler() {
     logOutUser();
-    navigate(state?.from ? state.from : "/")
+    navigate(state?.from ? state.from : "/");
   }
 
   return (
@@ -37,22 +37,25 @@ export function Navbar() {
             : { background: "var(--dark-color)" }
         }
       >
-        <NavLink className="nav-btn" to="/">
+        <NavLink className="nav-logo" to="/">
           <FaRocket />
         </NavLink>
 
         <button
-        onClick={() => setResponsive((responsive) => !responsive)}
-        className="mobile-menu-icon"
-      >
-        {isResponsive ? (
-          <i className="fas fa-times"></i>
-        ) : (
-          <i className="fas fa-bars"></i>
-        )}
-      </button>
-        
-        <ul className={isResponsive ? "nav-links-mobile" : "nav-menu"} onClick={() => setResponsive(false)}>
+          onClick={() => setResponsive((responsive) => !responsive)}
+          className="mobile-menu-icon"
+        >
+          {isResponsive ? (
+            <i className="fas fa-times"></i>
+          ) : (
+            <i className="fas fa-bars"></i>
+          )}
+        </button>
+
+        <ul
+          className={isResponsive ? "nav-links-mobile" : "nav-menu"}
+          onClick={() => setResponsive(false)}
+        >
           <NavLink
             className="nav-btn"
             to="/"
@@ -68,6 +71,7 @@ export function Navbar() {
           >
             <li>Products</li>
           </NavLink>
+
           <NavLink
             className="nav-btn"
             to="/sign-up"
@@ -77,32 +81,32 @@ export function Navbar() {
             <li>Sign up</li>
           </NavLink>
         </ul>
-        <div className="signin-btn">
-          <button
-            className="primary-btn-1"
-            onClick={token ? logOutHandler : logInHandler}
-          >
-            {token ? "Log Out" : "Log In"}
-          </button>
-        </div>
 
         <div className="nav-icons">
+          <div className="signin-btn">
+            <button
+              className="primary-btn-1"
+              onClick={token ? logOutHandler : logInHandler}
+            >
+              {token ? "Log Out" : "Log In"}
+            </button>
+          </div>
+
           <NavLink className="nav-icon" to="/wishlist">
             <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
-            
-            {
-              wishlist?.length > 0 && token &&
+
+            {wishlist?.length > 0 && token && (
               <span className="item-count">{wishlist.length}</span>
-            }
+            )}
           </NavLink>
           <NavLink className="nav-icon" to="/cart">
             <ShoppingCartOutlinedIcon />
-            {
-              cart?.length > 0 &&  token &&
+            {cart?.length > 0 && token && (
               <span className="item-count">{cart.length}</span>
-            } 
+            )}
           </NavLink>
-          <span
+
+          {/* <span
             className="dark-btn"
             onClick={() => setDark((isDark) => !isDark)}
           >
@@ -116,6 +120,7 @@ export function Navbar() {
               />
             }
           </span>
+           */}
         </div>
       </nav>
     </>

@@ -9,8 +9,9 @@ import {LoginPage} from "./Pages/Login/LoginPage";
 import {SignupPage} from "./Pages/Signup/SignupPage";
 import {ProductDetails} from "./Pages/ProductDetails/ProductDetails";
 import {PrivateRoute} from "./PrivateRoute";
-import { ToastContainer } from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import {ErrorPage} from "./Pages/Error/ErrorPage"
+import {Footer} from "./Components/Footer/Footer";
 
 export default function App() {
   return (
@@ -22,14 +23,13 @@ export default function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:productID" element={<ProductDetails /> } />
         <Route path="/sign-up" element={<SignupPage />} />
-        {/* <Route path="/cart" element={<CartPage />} /> */}
-        {/* <Route path="/wishlist" element={<WishlistPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         <PrivateRoute path="/cart" element={<CartPage />} />
         <PrivateRoute path="/wishlist" element={<WishlistPage />} />
         <Route path="/*" element={<ErrorPage />} /> 
         </Routes>
       </main>
+      <Footer />
       <ToastContainer />
     </div>
   );

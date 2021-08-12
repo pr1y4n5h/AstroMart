@@ -19,19 +19,21 @@ export const ProductDetails = () => {
 
   const navigate = useNavigate();
 
-  const { isUserLogin, loggedUser } = useAuth();
-  // const {_id: userId } = loggedUserInfo
+  const { token, loggedUser } = useAuth();
 
   const product = products.find((product) => product._id === productID);
 
     const isInCart = cart?.find(item => item._id === productID);
     
     const cartHandler = async () => {
+
+      if(token) {
       if(isInCart) {
         navigate("/cart")
       } else {
         try {
           const response = await axios.post("https://astromart-backend.herokuapp.com/cart/", {
+            userId: loggedUser._id,
             product: product._id,
             quantity: 1,
           })
@@ -44,17 +46,22 @@ export const ProductDetails = () => {
       }
       }
 
-
+      else {
+        toastFailText("Please login to continue!")
+      }
+    }
 
       const isWishlisted = () => wishlist?.some(item => item._id === productID);
 
       const wishlistHandler = async () => {
 
+        if(token) {
+
         if(isWishlisted()) {
           try {
-            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${productID}`, {
+            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${productID}`, {
               type: "REMOVE"
-            })
+            }, { headers: { authorization: token } })
             dispatchProduct({ type: "REMOVE_FROM_WISHLIST", payload: product})
             toastFailText("Item removed from Wishlist!")
             console.log(wishlist)
@@ -65,9 +72,9 @@ export const ProductDetails = () => {
         }
         else {
           try {
-            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${productID}`, {
+            const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${productID}`, {
               type: "ADD"
-            })
+            }, { headers: { authorization: token } })
             dispatchProduct({ type: "ADD_TO_WISHLIST", payload: product})
             toastSuccessText("Item added to Wishlist!")
           }
@@ -75,10 +82,13 @@ export const ProductDetails = () => {
             console.log(err);
           }
         }
-        
+      }
+      else {
+        toastFailText("Please login to continue!")
+      }
       }
 
-      const {name, image, price, off, rating, details, category, deluxe } = product
+      const {name, image, price, off, rating, stock, details, category, deluxe } = product
 
       const mrp = Math.round((price*100)/(100-off));
       const savings = Math.round(mrp - price);
@@ -89,7 +99,6 @@ export const ProductDetails = () => {
       <div className="product-details-image">
         <img src={image} alt={name} />
         <div class="ribbon" style={!deluxe ? {display:"none"} : {display:"block"}} ><span>Deluxe</span></div>
-
       </div>
 
       <div className="product-details-content">
@@ -113,10 +122,10 @@ export const ProductDetails = () => {
         <div> Our Deal: <span className="product-details-price" > &#8377; {price}   </span></div>
         <div className="product-details-savings-div"> Savings: <span className="product-details-savings"> &#8377; {savings} ({off}%) </span> </div>
       </div>
-
+  
       <div classname="product-details-buttons" > 
-      <button onClick={cartHandler} className={isInCart ? "secondary-btn-1" : "primary-btn-1"}> {isInCart ? "Go to Cart" : "Add to Cart"} </button> 
-      <button className="secondary-btn-1" onClick={wishlistHandler} > {isWishlisted() ? "Remove from Wishlist" : "Move to Wishlist"} </button> 
+      <button onClick={cartHandler} style={!stock ? { display: "none" } : { display: "null" }} className={isInCart && token ? "secondary-btn-1" : "primary-btn-1"}> {isInCart && token ? "Go to Cart" : "Add to Cart"} </button> 
+      <button className="secondary-btn-1" onClick={wishlistHandler} > {isWishlisted() && token ? "Remove from Wishlist" : "Move to Wishlist"} </button> 
       </div>
     </div>
     </div>

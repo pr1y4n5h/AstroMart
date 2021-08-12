@@ -16,7 +16,7 @@ export const CartPage = () => {
 
   return ( 
     <div>
-    {cart.length > 0 ? <div className="cart-box">
+    {cart.length > 0 ? <div className="cart-box"> 
       <div className="cart-products-div">
         {cart.map(item => (
           <CartCard product={item} />

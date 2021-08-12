@@ -30,6 +30,15 @@
   cursor: pointer
 }
 
+.nav-logo {
+    color: var(--base-color);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 .nav-btn:hover {
   color: var(--primary-color);
 }
@@ -87,8 +96,8 @@
     list-style: none;
     background-color: var(--dark-color);
     left: 0;
-    top: 55px;
-    transition: all 0.5s ease-out;
+    top: 85px;
+    transition: all 1s ease-out;
     width: 100%;
   }
 
@@ -97,7 +106,7 @@
     position: absolute;
     font-size: 1.5rem;
     color: white;
-    background-color: black;
+    background-color: var(--dark-color);
     border: none;
     outline: none;
     top: 2rem;
@@ -108,18 +117,25 @@
     display: none;
   }
 
-  .signin-btn {
-    display: none;
-  }
-
   .nav-icons {
-    position: absolute;
-    top: 2rem;
-    left: 1rem;
     display: flex;
-    width: 70%;
+    width: 100%;
     justify-content: center;
   }
+
+  .nav-icon {
+    color: var(--base-color);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 1rem;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav-logo {
+    margin-left: 1rem;
+}
 
   .nav-btn {
     color: var(--base-color);

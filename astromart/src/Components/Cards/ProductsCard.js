@@ -9,12 +9,13 @@ import { toastSuccessText, toastFailText } from "../Toast";
 import { useAuth } from "../../Contexts/AuthContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
-
+ 
 export const ProductsCard = ({ product }) => {
 
     const { token, loggedUser } = useAuth();
     const { _id, name, image, price, off, rating, stock, deluxe } = product;
-    const { dispatchProduct, products, wishlist, cart } = useProducts();
+    const { dispatchProduct, wishlist, cart } = useProducts();
+
     const navigate = useNavigate();
 
     const isWishlisted = () => wishlist?.some(item => item._id === product._id);
@@ -35,7 +36,7 @@ export const ProductsCard = ({ product }) => {
               console.log(err);
             }
           }
-          else {
+          else { 
             try {
               const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${_id}`, {
                 type: "ADD"
@@ -58,7 +59,6 @@ export const ProductsCard = ({ product }) => {
     const cartHandler = async () => {
 
       if(token) {
-
       if(isInCart) {
         navigate("/cart")
       } else {
@@ -67,7 +67,7 @@ export const ProductsCard = ({ product }) => {
             userId: loggedUser._id,
             product: product._id,
             quantity: 1,
-          })
+          }, { headers: { authorization: token } })
           dispatchProduct({ type: "ADD_TO_CART", payload: product})
           toastSuccessText("Item Added to Cart!")
         }
@@ -76,11 +76,9 @@ export const ProductsCard = ({ product }) => {
         }
       }
       }
-
       else {
         toastFailText("Please login to continue!")
       }
-
     }
 
   return (
@@ -110,7 +108,7 @@ export const ProductsCard = ({ product }) => {
        </span>
 
       <div className="product-card-body">
-        <div className="product-name"> {name} </div>
+        <h3 className="product-name"> {name} </h3>
         <div className="product-card-details">
           <div>
             <GradeRoundedIcon
@@ -135,7 +133,7 @@ export const ProductsCard = ({ product }) => {
         >
           <button
             className={isInCart && token ? "secondary-btn-1" : "primary-btn-1"}
-            onClick={cartHandler}
+            onClick={cartHandler} style={{marginTop: "0.5rem"}}
           >
             { isInCart && token ? "Go to Cart" : "Add to Cart"}
           </button>

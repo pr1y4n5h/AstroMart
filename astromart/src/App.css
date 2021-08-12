@@ -19,6 +19,10 @@
   padding: 0;
 }
 
+.main {
+  min-height: 80vh;
+}
+
 
 .ribbon {
   position: absolute;

@@ -4,14 +4,14 @@ import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import axios from "axios";
 import {useProducts} from "../../Contexts/ProductContext"
 import {useAuth} from "../../Contexts/AuthContext";
-import { toastFailText } from "../Toast";
+import { toastFailText, toastSuccessText } from "../Toast";
 import "./CartCard.Style.css"
 
 export const CartCard = ({ product }) => {
 
   const { _id, name, image, price, off, deluxe, category, rating, quantity } = product;
   const {loggedUser, token} = useAuth();
-  const {dispatchProduct} = useProducts();
+  const {dispatchProduct, wishlist} = useProducts();
 
   const mrp = Math.round((price * 100) / (100 - off));
   const savings = Math.round(mrp - price);
@@ -21,7 +21,7 @@ export const CartCard = ({ product }) => {
       const response = await axios.post(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}/${_id}`,
         {
           quantity: quantity + 1
-        }
+        }, { headers: { authorization: token } }
       )
 
       dispatchProduct({ type: "INCREMENT_QTY", payload: product})
@@ -39,7 +39,7 @@ export const CartCard = ({ product }) => {
       const response = await axios.post(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}/${_id}`,
         {
           quantity: quantity - 1
-        }
+        }, { headers: { authorization: token } }
       )
 
       dispatchProduct({ type: "DECREMENT_QTY", payload: product })
@@ -47,6 +47,36 @@ export const CartCard = ({ product }) => {
     catch (err) {
       console.log(err);
     }
+  }
+
+  const isWishlisted = () => wishlist?.some(item => item._id === product._id);
+
+  const wishlistHandler = async () => {
+      if(isWishlisted()) {
+        try {
+          const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${_id}`, {
+            type: "REMOVE"
+          }, { headers: { authorization: token } })
+          dispatchProduct({ type: "REMOVE_FROM_WISHLIST", payload: product})
+          toastFailText("Item removed from Wishlist!")
+          console.log(wishlist)
+        }
+        catch (err) {
+          console.log(err);
+        }
+      }
+      else { 
+        try {
+          const response = await axios.post(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}/${_id}`, {
+            type: "ADD"
+          }, { headers: { authorization: token } })
+          dispatchProduct({ type: "ADD_TO_WISHLIST", payload: product})
+          toastSuccessText("Item added to Wishlist!")
+        }
+        catch (err) {
+          console.log(err);
+        }
+      }
   }
 
   return (
@@ -65,26 +95,23 @@ export const CartCard = ({ product }) => {
           <h2> {name} </h2>
         </div>
         <div className="cart-card-details">
-          <div>
-            <GradeRoundedIcon
-              style={
-                rating >= 4
-                  ? { color: "var(--green-color)" }
-                  : rating > 3 && rating < 4
-                  ? { color: "var(--orange-color)" }
-                  : { color: "var(--red-color)" }
-              }
-            />
-            {rating}
-          </div>
-          <div>Category : {category}</div>
-          <span> {off}% Off </span>
-          <span className="cart-product-price"> &#8377; {price} </span>
+        <div className="product-rating-div" style={
+              rating >= 4
+                ? { color: "var(--green-color)" }
+                : rating > 3 && rating < 4
+                ? { color: "var(--orange-color)" }
+                : { color: "var(--red-color)" }
+            }>
+          <GradeRoundedIcon
+          />
+          <b className="product-rating-text">{rating}</b>
         </div>
-        <div className="product-details-pricing">
+          <div>Category : {category}</div>
+        </div>
+        <div className="product-cart-pricing">
           <div>
             MRP: <span className="product-details-mrp">&#8377; {mrp}</span>
-          </div>
+          </div> 
           <div>
             Our Deal:
             <span className="product-details-price"> &#8377; {price} </span>
@@ -103,7 +130,7 @@ export const CartCard = ({ product }) => {
             <button onClick={increaseQty} className="update-qty-btn"> + </button>
           </div>
           <div className="cart-bottom-btn">
-            <button className="secondary-btn-1">Move to Wishlist</button>
+            <button onClick={wishlistHandler} className="secondary-btn-1">{!isWishlisted() ? "Add to Wishlist" : "Remove from Wishlist"}</button>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@
 
 .product-card:hover {
   transform: scale(1.1);
-}
+} 
 
 .product-card-top {
   display: flex;
@@ -31,7 +31,7 @@
   max-width: 100%;
   display: block;
   object-fit: cover;
-  height: 250px;
+  height: 220px;
   opacity: 0.5;
   filter: grayscale(100%);
 }
@@ -64,11 +64,12 @@
 
 .product-card-body {
   padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-name {
-  /* font-family: 'Rakkas', cursive; */
-  font-size: 1.25rem;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -79,7 +80,9 @@
 
 .product-card-bottom {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+
 }
 
 .product-price {

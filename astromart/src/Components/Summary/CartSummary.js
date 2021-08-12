@@ -8,13 +8,13 @@ export const CartSummary = () => {
   return (
     <>
       <aside className="cart-summary-aside">  
-      <div className="cart-summary-heading"> <h2>Cart Summary </h2> </div>
+      <h1 className="cart-summary-heading">Cart Summary </h1>
       <div className="cart-summary-calc">
-          <p> Your Sum: {cartTotal} </p>
-          <p> Shipping Charges: 40 </p>
-          <hr />
+          <h3 className="cart-total"> Your total: &#8377; {cartTotal} </h3>
+          <h3 className="cart-shipping"> Shipping Charges: &#8377; 40 </h3>
+          <hr style={{ marginTop: "3rem"}} />
           </div>
-          <p> Amount Payable : {cartTotal + 40} </p>
+          <h2 className="cart-net-total"> Amount Payable : &#8377; {cartTotal + 40} </h2>
           <button className="primary-btn-1"> Check Out </button>
       </aside>
     </>

@@ -7,8 +7,8 @@ export const HomePage = () => {
     usePageTitle("AstroMart || Home")
 
   return (
-    <div>
-      <h1>Working on Homepage</h1>
+    <div className="home-page">
+    This is Home Page
     </div>
   );
 };

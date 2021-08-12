@@ -15,7 +15,7 @@ export function ProductProvider({ children }) {
   async function fetchWishlist() {
 
     try {
-      const { data } = await axios.get(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}`);
+      const { data } = await axios.get(`https://astromart-backend.herokuapp.com/wishlist/${loggedUser._id}`, { headers: { authorization: token } });
 
       dispatchProduct({ type: "FETCH_WISHLIST", payload: { wishlist: data.wishlist}})
     }
@@ -30,7 +30,7 @@ export function ProductProvider({ children }) {
 
   async function fetchCart() {
   try {
-       const {data} = await axios.get(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}`);
+       const {data} = await axios.get(`https://astromart-backend.herokuapp.com/cart/${loggedUser._id}`, { headers: { authorization: token } });
 
       dispatchProduct({ type: "FETCH_CART", payload: {cart: data.cart}})
      } catch (error) {
