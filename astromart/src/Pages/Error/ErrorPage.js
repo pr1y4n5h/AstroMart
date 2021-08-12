@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
-import { usePageTitle } from "../Hooks/usePageTitle";
+import "./ErrorPage.style.css"
+import { usePageTitle } from "../../Hooks/usePageTitle";
 
 export const ErrorPage = () => {
   usePageTitle("Error Page!");

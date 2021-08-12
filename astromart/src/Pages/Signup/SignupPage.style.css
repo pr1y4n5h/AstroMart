@@ -1,0 +1,49 @@
+.signup-page-box {
+  background: url(../../images/signup_img.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  border: 2px solid black;
+  color: var(--primary-color);
+}
+
+.signup-box {
+  font-family: "Rakkas", cursive;
+  width: 300px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--base-color);
+}
+
+.already-registered {
+  display: flex;
+  justify-content: center;
+}
+
+.login-link {
+  color: var(--base-color);
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: var(--primary-color);
+}
+
+.login-lower {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-link {
+  color: var(--base-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signup-link:hover {
+  color: var(--primary-color);
+}

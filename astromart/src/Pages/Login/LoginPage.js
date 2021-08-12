@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import { useAuth } from "../Contexts/AuthContext";
+import { useAuth } from "../../Contexts/AuthContext";
 import { NavLink } from "react-router-dom";
-import { useScrollToTop } from "../Hooks/useScrollToTop";
+import { useScrollToTop } from "../../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
-import { MyLoader } from "../Components/Loader";
-import { useMainContext } from "../Contexts/MainContext";
-import { useProducts } from "../Contexts/ProductContext";
+import { useMainContext } from "../../Contexts/MainContext";
+import { useProducts } from "../../Contexts/ProductContext";
 import React from "react";
-import { usePageTitle } from "../Hooks/usePageTitle";
-import { toastSuccessText, toastFailText } from "../Components/Toast";
+import { usePageTitle } from "../../Hooks/usePageTitle";
+import { toastSuccessText, toastFailText } from "../../Components/Toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./LoginPage.styles.css"
 
 export const LoginPage = () => {
   useScrollToTop();
@@ -50,7 +50,6 @@ export const LoginPage = () => {
 
   return (
     <div className="login-page-box">
-      {/* {loader && <MyLoader />} */}
       <div className="login-box">
         <h1 className="login-heading">Login</h1>
         <div className="credentials">

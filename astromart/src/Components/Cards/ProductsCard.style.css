@@ -1,0 +1,99 @@
+.product-card {
+  margin: 1rem 1rem;
+  width: 250px;
+  height: 400px;
+  box-shadow: 1rem 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: scale(1.1);
+}
+
+.product-card-top {
+  display: flex;
+  justify-content: center;
+}
+
+.product-card-top img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 220px;
+}
+
+.product-card-top-nostock img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 250px;
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.product-card-top-nostock > .sold-text {
+  position: absolute;
+  top: 8rem;
+  left: 4rem;
+  font-family: "Rakkas", cursive;
+  font-size: 3rem;
+  transform: rotate(-45deg);
+  color: var(--primary-color);
+}
+
+.product-card-top > .sold-text {
+  display: none;
+}
+
+.card-wishlist-btn {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  z-index: 100;
+  padding: 3px;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--base-color);
+  cursor: pointer;
+}
+
+.product-card-body {
+  padding: 1rem 1rem;
+}
+
+.product-name {
+  /* font-family: 'Rakkas', cursive; */
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.product-card-details {
+  position: relative;
+}
+
+.product-card-bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.product-price {
+  font-size: 1.4rem;
+  font-weight: bolder;
+  position: absolute;
+  right: 0;
+  top: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-card {
+    width: 100%;
+    height: auto;
+    margin: 1.2rem;
+  }
+}

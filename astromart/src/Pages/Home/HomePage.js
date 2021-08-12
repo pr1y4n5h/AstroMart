@@ -1,6 +1,6 @@
 import React from "react";
-
-import { usePageTitle } from "../Hooks/usePageTitle";
+import "./HomePage.style.css"
+import { usePageTitle } from "../../Hooks/usePageTitle";
 
 export const HomePage = () => {
 

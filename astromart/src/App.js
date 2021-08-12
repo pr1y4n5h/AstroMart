@@ -1,16 +1,16 @@
 import './App.css';
-import { Navbar } from './Components/Navbar';
+import { Navbar } from './Components/Navbar/Navbar';
 import {Routes,Route} from "react-router-dom";
-import {CartPage} from "./Pages/CartPage";
-import {HomePage} from "./Pages/HomePage";
-import {ProductsPage} from "./Pages/ProductsPage";
-import {WishlistPage} from "./Pages/WishlistPage";
-import {LoginPage} from "./Pages/LoginPage";
-import {SignupPage} from "./Pages/SignupPage";
-import {ProductDetails} from "./Pages/ProductDetails";
+import {CartPage} from "./Pages/Cart/CartPage";
+import {HomePage} from "./Pages/Home/HomePage";
+import {ProductsPage} from "./Pages/Products/ProductsPage";
+import {WishlistPage} from "./Pages/Wishlist/WishlistPage";
+import {LoginPage} from "./Pages/Login/LoginPage";
+import {SignupPage} from "./Pages/Signup/SignupPage";
+import {ProductDetails} from "./Pages/ProductDetails/ProductDetails";
 import {PrivateRoute} from "./PrivateRoute";
 import { ToastContainer } from "react-toastify";
-import {ErrorPage} from "./Pages/ErrorPage"
+import {ErrorPage} from "./Pages/Error/ErrorPage"
 
 export default function App() {
   return (
@@ -27,7 +27,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <PrivateRoute path="/cart" element={<CartPage />} />
         <PrivateRoute path="/wishlist" element={<WishlistPage />} />
-        <Route path="*" element={<ErrorPage />} /> 
+        <Route path="/*" element={<ErrorPage />} /> 
         </Routes>
       </main>
       <ToastContainer />

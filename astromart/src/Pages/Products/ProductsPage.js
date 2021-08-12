@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { Sidebar } from "../Components/Sidebar";
-import { useMainContext } from "../Contexts/MainContext";
-import { ProductsCard } from "../Components/ProductsCard";
-import "../App.css";
-import {useFetchProducts} from "../Hooks/useFetchProducts";
-import {MyLoader} from "../Components/Loader";
-import {useScrollToTop} from "../Hooks/useScrollToTop"; 
-import {useAuth} from "../Contexts/AuthContext";
-import {useProducts} from "../Contexts/ProductContext"
-import {usePageTitle} from "../Hooks/usePageTitle";
+import { Sidebar } from "../../Components/Sidebar/Sidebar";
+import { useMainContext } from "../../Contexts/MainContext";
+import { ProductsCard } from "../../Components/Cards/ProductsCard";
+import "./ProductsPage.style.css";
+import {useFetchProducts} from "../../Hooks/useFetchProducts";
+import {MyLoader} from "../../Components/Loader/Loader";
+import {useScrollToTop} from "../../Hooks/useScrollToTop"; 
+import {useAuth} from "../../Contexts/AuthContext";
+import {useProducts} from "../../Contexts/ProductContext"
+import {usePageTitle} from "../../Hooks/usePageTitle";
 
 export const ProductsPage = () => {
   const { sortBy, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
@@ -21,7 +21,7 @@ export const ProductsPage = () => {
 
   function getSorted(products, sortBy) {
     if (sortBy && sortBy === "PRICE_LOW_TO_HIGH") {
-      return products.sort((a, b) => a["price"] - b["price"]);
+      return products.sort((a, b) => a["price"] - b["price"]); 
     }
     if (sortBy && sortBy === "PRICE_HIGH_TO_LOW") {
       return products.sort((a, b) => b["price"] - a["price"]);

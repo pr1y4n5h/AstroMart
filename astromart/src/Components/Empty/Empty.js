@@ -1,4 +1,4 @@
-import "../App.css";
+import "./Empty.style.css";
 import { NavLink } from "react-router-dom";
 
 export const Empty = ({ component }) => {

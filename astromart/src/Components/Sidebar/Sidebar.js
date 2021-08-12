@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
-import "../App.css";
-import { useMainContext } from "../Contexts/MainContext"
+import "./Sidebar.style.css";
+import { useMainContext } from "../../Contexts/MainContext"
 
 export const Sidebar = () => {
 

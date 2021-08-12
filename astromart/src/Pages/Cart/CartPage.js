@@ -1,11 +1,11 @@
 import React from "react";
-import { useProducts } from "../Contexts/ProductContext";
-import "../App.css";
-import { Empty } from "../Components/Empty";
-import { useScrollToTop } from "../Hooks/useScrollToTop";
-import {usePageTitle} from "../Hooks/usePageTitle";
-import {CartCard} from "../Components/CartCard/CartCard"
-import {CartSummary} from "../Components/CartSummary";
+import { useProducts } from "../../Contexts/ProductContext";
+import "./CartPage.styles.css";
+import { Empty } from "../../Components/Empty/Empty";
+import { useScrollToTop } from "../../Hooks/useScrollToTop";
+import {usePageTitle} from "../../Hooks/usePageTitle";
+import {CartCard} from "../../Components/Cards/CartCard"
+import {CartSummary} from "../../Components/Summary/CartSummary";
  
 export const CartPage = () => {
 

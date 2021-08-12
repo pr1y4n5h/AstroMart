@@ -1,0 +1,132 @@
+.nav-main {
+  font-family: "Rakkas", cursive;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1000;
+  padding: 0.5rem calc((100vw - 1000px) / 2);
+  position: sticky;
+  top: 0;
+}
+
+.mobile-menu-icon {
+  display: none;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-right: -24px;
+  margin-top: 1.2rem;
+}
+
+.nav-btn {
+  color: var(--base-color);
+  text-decoration: none;
+  height: 100%;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  cursor: pointer
+}
+
+.nav-btn:hover {
+  color: var(--primary-color);
+}
+
+.nav-icons {
+  display: flex; 
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.nav-icon {
+  color: var(--base-color);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.item-count {
+  position: absolute;
+  right: 20%;
+  top: 20%;
+}
+
+.signin-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 24px;
+}
+
+.dark-btn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-burger {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.75rem;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 90%);
+  }
+
+  .nav-links-mobile {
+    position: absolute;
+    display: block;
+    list-style: none;
+    background-color: var(--dark-color);
+    left: 0;
+    top: 55px;
+    transition: all 0.5s ease-out;
+    width: 100%;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+    position: absolute;
+    font-size: 1.5rem;
+    color: white;
+    background-color: black;
+    border: none;
+    outline: none;
+    top: 2rem;
+    right: 1.5rem;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .signin-btn {
+    display: none;
+  }
+
+  .nav-icons {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    display: flex;
+    width: 70%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    color: var(--base-color);
+    text-decoration: none;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    transition: all 0.5s ease;
+  }
+}

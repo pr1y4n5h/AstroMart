@@ -1,5 +1,6 @@
 import React from "react";
-import { useProducts } from "../Contexts/ProductContext";
+import { useProducts } from "../../Contexts/ProductContext";
+import "./Summary.style.css"
 
 export const CartSummary = () => {
   const { cartTotal } = useProducts();

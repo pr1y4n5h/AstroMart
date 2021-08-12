@@ -1,0 +1,10 @@
+.product-page {
+  display: flex;
+}
+
+.products-container {
+  padding: 1rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+ 

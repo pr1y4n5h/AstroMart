@@ -1,0 +1,39 @@
+.errorPage-box {
+  background: url(../../images/404_img.jpg) no-repeat;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.message404 {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: space-evenly;
+  height: 40vh;
+  padding: 1rem 1rem;
+  color: var(--base-color);
+}
+
+.message404 h1 {
+  font-family: "Rakkas", cursive;
+  font-size: 3rem;
+}
+
+.message404 h3 {
+  font-family: "Inter", sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .message404 {
+    height: 70vh;
+    padding: 1rem 1rem;
+    color: var(--dark-color);
+  }
+
+  .message404 h1 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+}

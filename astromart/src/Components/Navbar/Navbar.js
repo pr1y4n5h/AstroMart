@@ -1,16 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../App.css";
+import "./Navbar.styles.css";
 import { FaRocket, FaBars } from "react-icons/fa";
-import { useTheme } from "../Contexts/ThemeContext";
+import { useTheme } from "../../Contexts/ThemeContext";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import Brightness4RoundedIcon from "@material-ui/icons/Brightness4Rounded";
-import { useAuth } from "../Contexts/AuthContext";
+import { useAuth } from "../../Contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useProducts } from "../Contexts/ProductContext";
+import { useProducts } from "../../Contexts/ProductContext";
 
 export function Navbar() {
+  const [isResponsive, setResponsive] = React.useState(false);
   const { token, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
   const { wishlist, cart } = useProducts();
@@ -39,24 +40,33 @@ export function Navbar() {
         <NavLink className="nav-btn" to="/">
           <FaRocket />
         </NavLink>
-        <span className="nav-burger">
-          <FaBars />
-        </span>
-        <div className="nav-menu">
+
+        <button
+        onClick={() => setResponsive((responsive) => !responsive)}
+        className="mobile-menu-icon"
+      >
+        {isResponsive ? (
+          <i className="fas fa-times"></i>
+        ) : (
+          <i className="fas fa-bars"></i>
+        )}
+      </button>
+        
+        <ul className={isResponsive ? "nav-links-mobile" : "nav-menu"} onClick={() => setResponsive(false)}>
           <NavLink
             className="nav-btn"
             to="/"
             end
             activeStyle={{ color: "var(--primary-color)" }}
           >
-            Home
+            <li>Home</li>
           </NavLink>
           <NavLink
             className="nav-btn"
             to="/products"
             activeStyle={{ color: "var(--primary-color)" }}
           >
-            Products
+            <li>Products</li>
           </NavLink>
           <NavLink
             className="nav-btn"
@@ -64,9 +74,9 @@ export function Navbar() {
             activeStyle={{ color: "var(--primary-color)" }}
             style={token && { display: "none" }}
           >
-            Sign up
+            <li>Sign up</li>
           </NavLink>
-        </div>
+        </ul>
         <div className="signin-btn">
           <button
             className="primary-btn-1"

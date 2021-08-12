@@ -1,10 +1,10 @@
-import { useProducts } from "../Contexts/ProductContext";
-import { Empty } from "../Components/Empty";
-import { useAuth } from "../Contexts/AuthContext";
-import "../App.css";
-import { ProductsCard } from "../Components/ProductsCard";
-import {MyLoader} from "../Components/Loader";
-import {usePageTitle} from "../Hooks/usePageTitle";
+import { useProducts } from "../../Contexts/ProductContext";
+import { Empty } from "../../Components/Empty/Empty";
+import { useAuth } from "../../Contexts/AuthContext";
+import "./WishlistPage.style.css";
+import { ProductsCard } from "../../Components/Cards/ProductsCard";
+import {MyLoader} from "../../Components/Loader/Loader";
+import {usePageTitle} from "../../Hooks/usePageTitle";
 
 export const WishlistPage = () => {
   const { token } = useAuth();

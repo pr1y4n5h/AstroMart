@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-import "../App.css";
-import {useProducts} from "../Contexts/ProductContext"  
-import {useScrollToTop} from "../Hooks/useScrollToTop"
+import "./ProductDetails.style.css";
+import {useProducts} from "../../Contexts/ProductContext"  
+import {useScrollToTop} from "../../Hooks/useScrollToTop"
 import axios from "axios";
-import { toastSuccessText, toastFailText } from "../Components/Toast";
-import { useAuth } from "../Contexts/AuthContext";
+import { toastSuccessText, toastFailText } from "../../Components/Toast";
+import { useAuth } from "../../Contexts/AuthContext";
 import {useNavigate} from "react-router-dom";
 
 export const ProductDetails = () => {

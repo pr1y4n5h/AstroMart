@@ -1,12 +1,12 @@
 import React from "react";
-import "../App.css";
+import "./ProductsCard.style.css";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { Link } from "react-router-dom";
-import { useProducts } from "../Contexts/ProductContext";
-import { toastSuccessText, toastFailText } from "../Components/Toast";
-import { useAuth } from "../Contexts/AuthContext";
+import { useProducts } from "../../Contexts/ProductContext";
+import { toastSuccessText, toastFailText } from "../Toast";
+import { useAuth } from "../../Contexts/AuthContext";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 

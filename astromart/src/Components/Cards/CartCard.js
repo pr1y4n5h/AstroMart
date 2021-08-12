@@ -4,7 +4,8 @@ import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import axios from "axios";
 import {useProducts} from "../../Contexts/ProductContext"
 import {useAuth} from "../../Contexts/AuthContext";
-import { toastFailText } from "../../Components/Toast";
+import { toastFailText } from "../Toast";
+import "./CartCard.Style.css"
 
 export const CartCard = ({ product }) => {
 
@@ -31,7 +32,7 @@ export const CartCard = ({ product }) => {
   }
 
   const decreaseQty = async () => {
-    if(quantity == 1) {
+    if(quantity === 1) {
       toastFailText("Item Removed from Cart!")
     }
     try {

@@ -1,0 +1,43 @@
+
+.sidebar-aside {
+    width: 25%;
+    padding: 2rem 1.5rem;
+    height: 80vh;
+    position: sticky;
+    top: 100px;
+  }
+  
+  fieldset {
+    font-family: "Inter", sans-serif;
+    box-shadow: 1rem 2.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+    border-radius: 8px;
+    border: 1px solid var(--grey-color);
+    width: 225px;
+  }
+  
+  .sidebar-legend {
+    padding: 0.5rem 0;
+    font-size: 1.25rem;
+  }
+  
+  .sidebar-heading {
+    margin-left: 10px;
+    font-weight: 600;
+  }
+  
+  .sort-div {
+    margin: 1rem;
+  }
+  
+  .sidebar-label {
+    cursor: pointer;
+  }
+  
+
+@media screen and (max-width: 768px) {
+    .sidebar-aside {
+      display: none;
+    }
+  
+  }
+  
