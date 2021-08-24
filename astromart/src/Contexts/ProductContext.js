@@ -46,7 +46,7 @@ export function ProductProvider({ children }) {
 
   useEffect(() => {
     fetchCart();
-  }, [token]);
+  }, [token, loggedUser]);
 
   return (
     <ProductContext.Provider value={{ ...state, dispatchProduct }}>

@@ -26,7 +26,7 @@ export const LoginPage = () => {
   const { loginUserWithCreds, loginUserAsGuest, credentials, setCredentials } =
     useAuth();
   const [isVisible, setVisible] = useState(false);
-  // const {loader} = useMainContext();
+  const { loader } = useProducts();
 
   async function loginHandler() {
     const { username, password } = credentials;
@@ -34,6 +34,7 @@ export const LoginPage = () => {
       const response = await loginUserWithCreds(username, password);
       if (response.success === true) {
         setCredentials("");
+        toastSuccessText("You are Logged In now !");
         navigate(state?.from ? state.from : "/");
       }
     } catch (err) {
@@ -81,7 +82,7 @@ export const LoginPage = () => {
           </span>
         </div>
         <button type="submit" className="login-btn" onClick={loginHandler}>
-          Login
+          {loader ? "Logging In..." : "Login"}
         </button>
         <div className="login-lower">
           <NavLink className="signup-link" to="/sign-up">
