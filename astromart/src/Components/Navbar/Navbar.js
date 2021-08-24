@@ -14,7 +14,7 @@ export function Navbar() {
   const [isResponsive, setResponsive] = React.useState(false);
   const { token, logOutUser } = useAuth();
   const { isDark, setDark } = useTheme();
-  const { wishlist, cart } = useProducts();
+  const { wishlist, cart, dispatchProduct } = useProducts();
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -23,6 +23,8 @@ export function Navbar() {
   }
 
   function logOutHandler() {
+    dispatchProduct({type: "FLUSH_CART"})
+    dispatchProduct({type: "FLUSH_WISHLIST"})
     logOutUser();
     navigate(state?.from ? state.from : "/");
   }

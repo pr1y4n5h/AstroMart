@@ -70,8 +70,20 @@ export function productReducer(state, action) {
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cart: state.cart.filter((item) => item._id !== action.payload._id)
-      }
+        cart: state.cart.filter((item) => item._id !== action.payload._id),
+      };
+
+    case "FLUSH_CART":
+      return {
+        ...state,
+        cart: [],
+      };
+
+    case "FLUSH_WISHLIST":
+      return {
+        ...state,
+        wishlist: [],
+      };
 
     default:
       return state;

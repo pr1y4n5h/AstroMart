@@ -26,10 +26,11 @@ export const LoginPage = () => {
   const { loginUserWithCreds, loginUserAsGuest, credentials, setCredentials } =
     useAuth();
   const [isVisible, setVisible] = useState(false);
-  const { loader } = useProducts();
+  const { loader, dispatchProduct } = useProducts();
 
   async function loginHandler() {
     const { username, password } = credentials;
+    dispatchProduct({ type: "SET_LOADER" });
     try {
       const response = await loginUserWithCreds(username, password);
       if (response.success === true) {
@@ -39,6 +40,9 @@ export const LoginPage = () => {
       }
     } catch (err) {
       console.log(err);
+    }
+    finally {
+      dispatchProduct({ type: "SET_LOADER" });
     }
   }
 
