@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../../Contexts/AuthContext";
-import { NavLink } from "react-router-dom";
 import { useScrollToTop } from "../../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
 import { useMainContext } from "../../Contexts/MainContext";
@@ -8,14 +7,14 @@ import { useProducts } from "../../Contexts/ProductContext";
 import React from "react";
 import { usePageTitle } from "../../Hooks/usePageTitle";
 import { toastSuccessText, toastFailText } from "../../Components/Toast";
-import { useLocation, useNavigate } from "react-router-dom";
+import {NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./LoginPage.styles.css"
 
 export const LoginPage = () => {
   useScrollToTop();
   usePageTitle("AstroMart || Login");
 
-  const { state } = useLocation();
+  const { state } = useLocation(); 
   const navigate = useNavigate();
 
   const inputRef = useRef(null);

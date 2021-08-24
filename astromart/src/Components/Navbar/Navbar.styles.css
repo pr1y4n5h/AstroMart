@@ -27,16 +27,16 @@
   height: 100%;
   padding: 0 1rem;
   font-size: 1.5rem;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .nav-logo {
-    color: var(--base-color);
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+  color: var(--base-color);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .nav-btn:hover {
@@ -44,7 +44,7 @@
 }
 
 .nav-icons {
-  display: flex; 
+  display: flex;
   align-items: center;
   padding: 0 1rem;
 }
@@ -90,17 +90,6 @@
     transform: translate(-100%, 90%);
   }
 
-  .nav-links-mobile {
-    position: absolute;
-    display: block;
-    list-style: none;
-    background-color: var(--dark-color);
-    left: 0;
-    top: 85px;
-    transition: all 1s ease-out;
-    width: 100%;
-  }
-
   .mobile-menu-icon {
     display: block;
     position: absolute;
@@ -135,7 +124,18 @@
 
   .nav-logo {
     margin-left: 1rem;
-}
+  }
+
+  .nav-links-mobile {
+    position: absolute;
+    display: block;
+    list-style: none;
+    background-color: var(--dark-color);
+    left: 0;
+    top: 85px;
+    transition: all 1s ease-out;
+    width: 100%;
+  }
 
   .nav-btn {
     color: var(--base-color);

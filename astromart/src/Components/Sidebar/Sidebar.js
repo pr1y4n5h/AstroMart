@@ -7,7 +7,7 @@ export const Sidebar = () => {
   const { sortBy, dispatchMain, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showJewellery, showOthers } = useMainContext();
 
     return (
-        <>
+        <> 
           <aside className="sidebar-aside">
 
           <fieldset className="sort-fieldset">

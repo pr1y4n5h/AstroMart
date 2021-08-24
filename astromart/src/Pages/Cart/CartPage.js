@@ -10,7 +10,7 @@ import {CartSummary} from "../../Components/Summary/CartSummary";
 export const CartPage = () => {
 
   useScrollToTop();
-  usePageTitle("AstroMart || My Cart")
+  usePageTitle("AstroMart || My Cart") 
 
   const { cart } = useProducts();
 
