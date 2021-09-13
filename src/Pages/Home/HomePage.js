@@ -3,6 +3,7 @@ import "./HomePage.style.css";
 import { usePageTitle } from "../../Hooks/usePageTitle";
 import { useAuth } from "../../Contexts/AuthContext";
 import { useNavigate } from "react-router";
+import { useScrollToTop } from "../../Hooks/useScrollToTop";
 
 export const HomePage = () => {
   usePageTitle("AstroMart || Home");
@@ -10,6 +11,8 @@ export const HomePage = () => {
   const {loggedUser, token} = useAuth();
 
   const navigate = useNavigate();
+
+  useScrollToTop();
 
   const goToProducts = () => {
     navigate("/products")
@@ -42,7 +45,7 @@ export const HomePage = () => {
               The moon lamp made of PLA material with 3D technology,
               Environmentally and energy-saving, makes it fall resistant.
             </p>
-            <button onClick={goToProducts} className="secondary-btn-1"> Check this </button>
+            <button onClick={goToProducts} className="secondary-btn-1"> View </button>
           </div>
 
           <div className="col">
@@ -55,7 +58,7 @@ export const HomePage = () => {
               Get this cute and trendy 'NASA' logo sweatshirt to show how nerdy
               and cool you are!
             </p>
-            <button onClick={goToProducts} className="secondary-btn-1"> Check this </button>
+            <button onClick={goToProducts} className="secondary-btn-1"> View </button>
           </div>
           
 
@@ -69,7 +72,7 @@ export const HomePage = () => {
               This pair of elegant stemless wine glasses shows the southern
               hemisphere's night sky in summer and in winter.
             </p>
-            <button onClick={goToProducts} className="secondary-btn-1"> Check this </button>
+            <button onClick={goToProducts} className="secondary-btn-1"> View </button>
           </div>
         </div>
       </section>

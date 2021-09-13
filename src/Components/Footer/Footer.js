@@ -4,7 +4,7 @@ import "./footer.style.css"
 export const Footer = () => {
     return (
         <footer className="footer">
-            Made with ❤
+            Made with ❤ by Priyansh
         </footer>
     )
 }

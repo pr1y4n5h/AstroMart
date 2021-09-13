@@ -1,5 +1,3 @@
-import React from "react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import axios from "axios";
 import {useProducts} from "../../Contexts/ProductContext"

@@ -1,10 +1,17 @@
 
 .sidebar-aside {
     width: 25%;
-    padding: 2rem 1.5rem;
     height: 80vh;
     position: sticky;
     top: 100px;
+  }
+  
+  .sidebar-wrapper {
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 65vh;
   }
   
   fieldset {
@@ -31,6 +38,10 @@
   
   .sidebar-label {
     cursor: pointer;
+  }
+
+  .sidebar-label-input {
+    margin-right: 0.4rem;
   }
   
 

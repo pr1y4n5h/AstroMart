@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import "./ProductDetails.style.css";

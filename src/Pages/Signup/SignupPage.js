@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useProducts } from "../../Contexts/ProductContext";
-import { useLocation, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { useScrollToTop } from "../../Hooks/useScrollToTop";
 import { FaUser, FaKey, FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiMail } from "react-icons/hi";

@@ -18,7 +18,7 @@
 .nav-menu {
   display: flex;
   list-style: none;
-  margin-right: -24px;
+  margin-left: 7rem;
   margin-top: 1.2rem;
 }
 
@@ -62,8 +62,9 @@
 
 .item-count {
   position: absolute;
-  right: 20%;
-  top: 20%;
+  right: 15%;
+  top: 15%;
+  font-size: 0.85rem;
 }
 
 .login-btnn {
@@ -82,12 +83,28 @@
 
 @media screen and (max-width: 768px) {
 
+  .nav-menu {
+    width: 100%;
+    margin-left: 1rem;
+    margin-top: 2rem;
+  }
+
   .nav-main {
     padding: 0;
   }
 
   .login-btnn {
     display: none;
+  }
+
+  .nav-logo-span {
+    position: relative;
+  }
+
+  .nav-logo {
+    position: absolute;
+    font-size: 1.5rem;
+    margin-right: 5rem;
   }
 
   .mobile-menu-icon {
@@ -109,6 +126,11 @@
     top: 40%;
   }
 
+  .item-count {
+    right: 15%;
+    top: -10px;
+  }  
+
   .nav-icon {
     color: var(--base-color);
     display: flex;
@@ -117,10 +139,6 @@
     padding: 0 1rem;
     text-decoration: none;
     position: relative;
-  }
-
-  .nav-logo {
-    margin: 1.5rem 2rem;
   }
 
   .nav-links-mobile {
