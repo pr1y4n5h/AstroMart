@@ -53,7 +53,7 @@ export const SignupPage = () => {
       }
     } catch (error) {
       if (error.response.status === 422) {
-        toastFailText("Username/password already exists!");
+        toastFailText("Username/Email already exists!");
       } else if (error.response.status === 409) {
         toastFailText(error.response.data.message);
       } else {

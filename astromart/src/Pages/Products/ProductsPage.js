@@ -3,10 +3,8 @@ import { Sidebar } from "../../Components/Sidebar/Sidebar";
 import { useMainContext } from "../../Contexts/MainContext";
 import { ProductsCard } from "../../Components/Cards/ProductsCard";
 import "./ProductsPage.style.css";
-import {useFetchProducts} from "../../Hooks/useFetchProducts";
 import {MyLoader} from "../../Components/Loader/Loader";
 import {useScrollToTop} from "../../Hooks/useScrollToTop"; 
-import {useAuth} from "../../Contexts/AuthContext";
 import {useProducts} from "../../Contexts/ProductContext"
 import {usePageTitle} from "../../Hooks/usePageTitle";
 
@@ -14,7 +12,6 @@ export const ProductsPage = () => {
   const { sortBy, showProducts, showDeluxe, showClothing, showBooks, showGadgets, showOthers, showJewellery } = useMainContext();
   const {products, wishlist, loader } = useProducts();
   usePageTitle("AstroMart || Products")
-  useFetchProducts();
   useScrollToTop();
 
   // console.log(wishlist);
@@ -34,12 +31,10 @@ export const ProductsPage = () => {
     .filter(({ stock }) => (showProducts ? true : stock))
     .filter(({deluxe}) => (showDeluxe ? deluxe : true))
     .filter(({category}) => (showClothing ? category==="clothing" : showBooks ? category==="books" : showGadgets ? category==="gadgets" : category))
-
-
-    // .filter(({category}) => (showBooks ? category==="books" : category) )
-    // .filter(({category}) => (showGadgets ? category==="gadgets" : true) )
-    // .filter(({category}) => (showJewellery ? category==="jewellery" : true) )
-    // .filter(({category}) => (showOthers ? category==="others" : true) )
+    .filter(({category}) => (showBooks ? category==="books" : category) )
+    .filter(({category}) => (showGadgets ? category==="gadgets" : true) )
+    .filter(({category}) => (showJewellery ? category==="jewellery" : true) )
+    .filter(({category}) => (showOthers ? category==="others" : true) )
   }
 
   const sorted = getSorted(products, sortBy);

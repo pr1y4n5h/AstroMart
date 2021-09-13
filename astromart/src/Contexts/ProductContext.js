@@ -6,10 +6,37 @@ import { productReducer } from "../Reducers/productReducer";
 
 export const ProductContext = createContext();
 
+export function useProducts() {
+  return useContext(ProductContext);
+}
+
 export function ProductProvider({ children }) {
   const { token, loggedUser } = useAuth();
-
   const [state, dispatchProduct] = useReducer(productReducer, initialProducts);
+
+  async function fetchProducts() {
+    dispatchProduct({ type: "SET_LOADER" });
+    try {
+      const {
+        status,
+        data: { success, products },
+      } = await axios.get("https://astromart-backend.herokuapp.com/products");
+
+      if (success === true && status === 200) {
+        dispatchProduct({ type: "FETCH_PRODUCTS", payload: products });
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatchProduct({ type: "SET_LOADER" });
+    }
+  }
+
+  useEffect(() => {
+    if (state.products.length === 0) {
+      fetchProducts();
+    }
+  }, []);
 
   async function fetchWishlist() {
     try {
@@ -53,8 +80,4 @@ export function ProductProvider({ children }) {
       {children}
     </ProductContext.Provider>
   );
-}
-
-export function useProducts() {
-  return useContext(ProductContext);
 }

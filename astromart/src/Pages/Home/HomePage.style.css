@@ -1,3 +1,99 @@
- .home-page {
-     height: 40vh;
- }
+.home-page {
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../images/home_bg2.jpg");
+  background-position: bottom;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.header-content {
+  margin-bottom: 280px;
+  color: var(--base-color);
+  text-align: center;
+}
+
+.header-content h2 {
+  font-size: 4vmin;
+}
+
+.header-content h1 {
+  font-size: 7vmin;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.line {
+  width: 150px;
+  height: 4px;
+  background: var(--primary-color);
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+section {
+  width: 80%;
+  margin: 80px auto;
+}
+
+.title {
+  text-align: center;
+  font-size: 4vmin;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.row .col {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-top: 1.5rem;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.row .col:hover {
+    transform: scale(1.1);
+}
+
+
+.home-img2 {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+.home-img1,
+.homeimg2 {
+  width: 100%;
+  height: 450px;
+}
+
+.home-img1 {
+  object-fit: contain;
+}
+
+.home-img2 {
+  object-fit: cover;
+}
+
+.col h3 {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.col p {
+    margin-bottom: 1rem;
+}

@@ -2,3 +2,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  .wishlist-cart-heading {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 1.8rem;
+    margin: 1rem 0;
+  }

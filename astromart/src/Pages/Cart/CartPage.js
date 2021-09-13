@@ -6,6 +6,7 @@ import { useScrollToTop } from "../../Hooks/useScrollToTop";
 import {usePageTitle} from "../../Hooks/usePageTitle";
 import {CartCard} from "../../Components/Cards/CartCard"
 import {CartSummary} from "../../Components/Summary/CartSummary";
+import { useAuth } from "../../Contexts/AuthContext";
  
 export const CartPage = () => {
 
@@ -13,9 +14,11 @@ export const CartPage = () => {
   usePageTitle("AstroMart || My Cart") 
 
   const { cart } = useProducts();
+  const { loggedUser } = useAuth();
 
   return ( 
-    <div>
+    <>
+      <h2 className="wishlist-cart-heading"> {loggedUser?.username?.charAt().toUpperCase() + loggedUser?.username.slice(1)}'s Cart </h2>
     {cart.length > 0 ? <div className="cart-box"> 
       <div className="cart-products-div">
         {cart.map(item => (
@@ -24,6 +27,6 @@ export const CartPage = () => {
       </div>
       <CartSummary />
     </div> : <Empty component="Cart" />}
-    </div>
+    </>
   );
 };

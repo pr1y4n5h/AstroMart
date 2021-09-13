@@ -1,11 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.styles.css";
-import { FaRocket, FaBars } from "react-icons/fa";
+import { FaRocket } from "react-icons/fa";
 import { useTheme } from "../../Contexts/ThemeContext";
-import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
-import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import Brightness4RoundedIcon from "@material-ui/icons/Brightness4Rounded";
+import {FavoriteRounded , ShoppingCartOutlined} from "@material-ui/icons";
 import { useAuth } from "../../Contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useProducts } from "../../Contexts/ProductContext";
@@ -23,8 +21,8 @@ export function Navbar() {
   }
 
   function logOutHandler() {
-    dispatchProduct({type: "FLUSH_CART"})
-    dispatchProduct({type: "FLUSH_WISHLIST"})
+    dispatchProduct({ type: "FLUSH_CART" });
+    dispatchProduct({ type: "FLUSH_WISHLIST" });
     logOutUser();
     navigate(state?.from ? state.from : "/");
   }
@@ -32,77 +30,64 @@ export function Navbar() {
   return (
     <>
       <nav
-        className="nav-main"
-        style={
-          isDark
-            ? { background: "var(--secondary-color)" }
-            : { background: "var(--dark-color)" }
-        }
-      >
-        <NavLink className="nav-logo" to="/">
-          <FaRocket />
-        </NavLink>
-
-        <button
-          onClick={() => setResponsive((responsive) => !responsive)}
-          className="mobile-menu-icon"
-        >
-          {isResponsive ? (
-            <i className="fas fa-times"></i>
-          ) : (
-            <i className="fas fa-bars"></i>
-          )}
-        </button>
-
+        className="nav-main">
         <ul
           className={isResponsive ? "nav-links-mobile" : "nav-menu"}
           onClick={() => setResponsive(false)}
         >
+        <span>
+          <NavLink className="nav-logo" to="/">
+         {isResponsive && "AstroMart"} <FaRocket />
+          </NavLink>
+        </span>
+
           <NavLink
             className="nav-btn"
             to="/"
             end
-            activeStyle={{ color: "var(--primary-color)" }}
+            activeStyle={isResponsive ? { color: "var(--base-color)" } : { color: "var(--primary-color)" }}
           >
             <li>Home</li>
           </NavLink>
           <NavLink
             className="nav-btn"
             to="/products"
-            activeStyle={{ color: "var(--primary-color)" }}
+            activeStyle={isResponsive ? { color: "var(--base-color)" } : { color: "var(--primary-color)" }}
           >
             <li>Products</li>
           </NavLink>
 
-          <NavLink
-            className="nav-btn"
-            to="/sign-up"
-            activeStyle={{ color: "var(--primary-color)" }}
-            style={token && { display: "none" }}
-          >
-            <li>Sign up</li>
-          </NavLink>
+          {!token && (
+            <NavLink
+              className="nav-btn"
+              to="/sign-up"
+              activeStyle={isResponsive ? { color: "var(--base-color)" } : { color: "var(--primary-color)" }}
+            >
+              <li>Sign up</li>
+            </NavLink>
+          )}
+
+          {token && isResponsive && (
+            <span
+              className="nav-btn"
+              onClick={logOutHandler}
+              style={{ color: "var(--base-color)" }}
+            >
+              <li>Log out</li>
+            </span>
+          )}
         </ul>
 
         <div className="nav-icons">
-          <div className="signin-btn">
-            <button
-              className="primary-btn-1"
-              onClick={token ? logOutHandler : logInHandler}
-            >
-              {token ? "Log Out" : "Log In"}
-            </button>
-          </div>
-
           <NavLink className="nav-icon" to="/wishlist">
-            <FavoriteRoundedIcon style={{ color: "#fb3958" }} />
+            <FavoriteRounded style={{ color: "#fb3958" }} />
 
             {wishlist?.length > 0 && token && (
               <span className="item-count">{wishlist.length}</span>
             )}
           </NavLink>
           <NavLink className="nav-icon" to="/cart">
-            <ShoppingCartOutlinedIcon />
+            <ShoppingCartOutlined />
             {cart?.length > 0 && token && (
               <span className="item-count">{cart.length}</span>
             )}
@@ -121,9 +106,28 @@ export function Navbar() {
                 }
               />
             }
-          </span>
-           */}
+          </span> */}
+
+          <div className="login-btnn">
+            <button
+              className="primary-btn-1"
+              onClick={token ? logOutHandler : logInHandler}
+            >
+              {token ? "Log Out" : "Log In"}
+            </button>
+          </div>
         </div>
+
+        <button
+          onClick={() => setResponsive((responsive) => !responsive)}
+          className="mobile-menu-icon"
+        >
+          {isResponsive ? (
+            <i className="fas fa-times"></i>
+          ) : (
+            <i className="fas fa-bars"></i>
+          )}
+        </button>
       </nav>
     </>
   );

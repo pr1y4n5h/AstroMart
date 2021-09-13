@@ -3,13 +3,9 @@ import { useEffect } from "react";
 import { useProducts } from "../Contexts/ProductContext";
 
 export function useFetchProducts() {
-
   const { dispatchProduct, products } = useProducts();
-
   async function fetchProducts() {
-    
     dispatchProduct({ type: "SET_LOADER" });
-
     try {
       const {
         status,

@@ -13,7 +13,7 @@ export function MainProvider({ children }) {
     </mainContext.Provider>
   );
 }
-
+ 
 export function useMainContext() {
   return useContext(mainContext);
 }

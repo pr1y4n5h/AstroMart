@@ -12,8 +12,14 @@ import {PrivateRoute} from "./PrivateRoute";
 import {ToastContainer} from "react-toastify";
 import {ErrorPage} from "./Pages/Error/ErrorPage"
 import {Footer} from "./Components/Footer/Footer";
+import { useAuth } from './Contexts/AuthContext';
 
 export default function App() {
+
+  const {token} = useAuth();
+
+  console.log(token)
+
   return (
     <div className="App">
       <Navbar />
@@ -30,7 +36,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-      <ToastContainer />
+      <ToastContainer theme="colored" />
     </div>
   );
 }

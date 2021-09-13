@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function toastSuccessText(text) {
-
   return toast.success(text, {
     position: toast.POSITION.BOTTOM_CENTER,
     autoClose: 3000,
@@ -10,10 +9,9 @@ export function toastSuccessText(text) {
     hideProgressBar: true,
     closeOnClick: true,
   });
-};
+}
 
 export function toastFailText(text) {
-
   return toast.error(text, {
     position: toast.POSITION.BOTTOM_CENTER,
     autoClose: 3000,
@@ -21,4 +19,4 @@ export function toastFailText(text) {
     hideProgressBar: true,
     closeOnClick: true,
   });
-};
+}

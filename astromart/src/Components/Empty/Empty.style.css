@@ -1,16 +1,18 @@
 
 .empty-page {
-    height: 40vh;
-    border: 1px solid;
+    height: 50vh;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
    }
-   
-   .empty-container > h1 {
-     margin-bottom: 5rem;;
-   }
-   
-   .empty-page-btn {
-     margin-top: 5rem;
-   }
+
+.empty-heading {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.empty-page-btn {
+  text-align: center;
+  margin-top: 8rem;
+}

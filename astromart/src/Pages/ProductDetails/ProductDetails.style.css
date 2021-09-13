@@ -31,6 +31,7 @@
   .product-details-heading {
     font-size: 2rem;
     font-weight: bolder;
+    text-align: center;
   }
   
   .product-rating-div {
@@ -55,15 +56,22 @@
     font-size: 1.15rem;
     text-decoration: line-through;
   }
+
+  .our-deal {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
   
   .product-details-price {
     font-size: 1.3rem;
     font-weight: bolder;
+    margin-left: 0.5rem;
   }
   
   .product-details-savings {
     color: #009432;
     font-weight: bold;
+    margin-left: 0.5rem;
   }
   
   .product-details-savings-div {
@@ -74,8 +82,9 @@
   .product-details-buttons {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 110px;
   }
-  
 
 
   @media screen and (max-width: 768px) {
@@ -91,6 +100,15 @@
       margin-left: 0;
       padding: 2rem 1.5rem;
       font-family: "Inter", sans-serif;
+    }
+
+    .product-details-heading {
+      text-align: left;
+      font-size: 1.8rem;
+    }
+
+    .product-details-pricing {
+      margin-top: 2rem;
     }
 
   }

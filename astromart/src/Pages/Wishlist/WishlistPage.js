@@ -3,20 +3,24 @@ import { Empty } from "../../Components/Empty/Empty";
 import { useAuth } from "../../Contexts/AuthContext";
 import "./WishlistPage.style.css";
 import { ProductsCard } from "../../Components/Cards/ProductsCard";
-import {MyLoader} from "../../Components/Loader/Loader";
-import {usePageTitle} from "../../Hooks/usePageTitle";
+import { usePageTitle } from "../../Hooks/usePageTitle";
 
 export const WishlistPage = () => {
-  const { token } = useAuth();
-  const { wishlist, dispatchProduct } = useProducts();
+  const { loggedUser } = useAuth();
+  const { wishlist} = useProducts();
 
-  usePageTitle("AstroMart || My Wishlist")
+  usePageTitle("AstroMart || My Wishlist");
 
   return (
-    <div className="wishlist-page">
-    {/* { loader && <MyLoader />} */}
-      {wishlist.length > 0 ? wishlist.map((item) => <ProductsCard product={item}/>) : <Empty component="Wishlist" /> }
-    </div>
+    <>
+      <h2 className="wishlist-cart-heading"> {loggedUser?.username?.charAt().toUpperCase() + loggedUser?.username.slice(1)}'s Wishlist </h2>
+      <div className="wishlist-page">
+        {wishlist.length > 0 ? (
+          wishlist.map((item) => <ProductsCard product={item} />)
+        ) : (
+          <Empty component="Wishlist" />
+        )}
+      </div>
+    </>
   );
 };
-
