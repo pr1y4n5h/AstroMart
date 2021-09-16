@@ -18,8 +18,6 @@ export default function App() {
 
   const {token} = useAuth();
 
-  console.log(token)
-
   return (
     <div className="App">
       <Navbar />

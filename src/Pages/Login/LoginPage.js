@@ -9,6 +9,7 @@ import { usePageTitle } from "../../Hooks/usePageTitle";
 import { toastSuccessText, toastFailText } from "../../Components/Toast";
 import {NavLink, useLocation, useNavigate } from "react-router-dom";
 import "./LoginPage.styles.css"
+import { CircularProgress } from "@material-ui/core";
 
 export const LoginPage = () => {
   useScrollToTop();
@@ -85,8 +86,12 @@ export const LoginPage = () => {
             {isVisible ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-        <button type="submit" className="login-btn" onClick={loginHandler}>
-          {loader ? "Logging In..." : "Login"}
+        <button disabled={loader} type="submit" className="login-btn" onClick={loginHandler}>
+        {loader ? (
+              <CircularProgress size={19} color="secondary" />
+            ) : (
+              "Login"
+            )}
         </button>
         <div className="login-lower">
           <NavLink className="signup-link" to="/sign-up">

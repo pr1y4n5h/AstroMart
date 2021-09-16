@@ -9,6 +9,7 @@ import axios from "axios";
 import { toastSuccessText, toastFailText } from "../../Components/Toast";
 import {usePageTitle} from "../../Hooks/usePageTitle";
 import "./SignupPage.style.css"
+import { CircularProgress } from "@material-ui/core";
 
 export const SignupPage = () => {
 
@@ -120,8 +121,12 @@ export const SignupPage = () => {
               {isVisible ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <button type="submit" className="login-btn" onClick={registerHandler}>
-            {loader ? "Submitting..." : "Register"}
+          <button disabled={loader} type="submit" className="login-btn" onClick={registerHandler}>
+          {loader ? (
+              <CircularProgress size={19} color="secondary" />
+            ) : (
+              "Signup"
+            )}
           </button>
           <div className="already-registered">
             <NavLink className="login-link" to="/login">
