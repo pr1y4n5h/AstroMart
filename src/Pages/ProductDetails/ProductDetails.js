@@ -30,7 +30,7 @@ export const ProductDetails = () => {
             userId: loggedUser._id,
             product: product._id,
             quantity: 1,
-          });
+          },  { headers: { authorization: token } });
           dispatchProduct({ type: "ADD_TO_CART", payload: product });
           toastSuccessText("Item Added to Cart!");
         } catch (err) {
