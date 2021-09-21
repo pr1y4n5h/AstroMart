@@ -86,7 +86,7 @@ export const ProductDetails = () => {
       <div className="product-details-image">
         <img src={product?.image} alt={product?.name} />
         <div
-          class="ribbon"
+          className="ribbon"
           style={!product?.deluxe ? { display: "none" } : { display: "block" }}
         >
           <span>Deluxe</span>

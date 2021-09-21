@@ -84,7 +84,7 @@ export const CartCard = ({ product }) => {
       <Link to={`/products/${_id}`}>
         <img src={image} alt={name} />
         <div
-          class="ribbon"
+          className="ribbon"
           style={!deluxe ? { display: "none" } : { display: "block" }}
         >
           <span>Deluxe</span>

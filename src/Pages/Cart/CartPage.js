@@ -11,9 +11,8 @@ export const CartPage = () => {
 
   useScrollToTop();
   usePageTitle("AstroMart || My Cart") 
-
-  const { cart, cartTotal} = useProducts();
   const { loggedUser } = useAuth();
+  const {cartTotal, cart} = useProducts();
 
   return ( 
     <>
@@ -21,7 +20,7 @@ export const CartPage = () => {
     {cart.length > 0 ? <div className="cart-box"> 
       <div className="cart-products-div">
         {cart.map(item => (
-          <CartCard product={item} />
+          <CartCard product={item} key={item._id} />
         ))}
       </div>
       <CartSummary total={cartTotal}/>

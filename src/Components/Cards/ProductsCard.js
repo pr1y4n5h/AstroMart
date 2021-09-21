@@ -81,7 +81,7 @@ export const ProductsCard = ({ product }) => {
   return (
     <div className="product-card">
       <div
-        class="ribbon"
+        className="ribbon"
         style={!deluxe ? { display: "none" } : { display: "block" }}
       >
         <span>Deluxe</span>
