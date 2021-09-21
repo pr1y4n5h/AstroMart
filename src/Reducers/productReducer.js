@@ -77,6 +77,7 @@ export function productReducer(state, action) {
       return {
         ...state,
         cart: [],
+        cartTotal: 0,
       };
 
     case "FLUSH_WISHLIST":
