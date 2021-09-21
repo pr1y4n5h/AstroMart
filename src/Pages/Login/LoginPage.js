@@ -48,8 +48,10 @@ export const LoginPage = () => {
   }
 
   async function loginAsGuestHandler() {
+    dispatchProduct({ type: "SET_LOADER" });
     await loginUserAsGuest();
     toastSuccessText("You are Logged In now !");
+    dispatchProduct({ type: "SET_LOADER" });
     navigate(state?.from ? state.from : "/");
   }
 
