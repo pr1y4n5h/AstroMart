@@ -24,7 +24,7 @@ export const CartPage = () => {
           <CartCard product={item} />
         ))}
       </div>
-      <CartSummary total={cartTotal} cart={cart} />
+      <CartSummary total={cartTotal}/>
     </div> : <Empty component="Cart" />}
     </>
   );
