@@ -1,9 +1,6 @@
 import "./Summary.style.css";
 
-export const CartSummary = ({total}) => {
-
-
-
+export const CartSummary = ({ total }) => {
   return (
     <>
       <aside className="cart-summary-aside">
