@@ -4,6 +4,7 @@ import {useProducts} from "../../Contexts/ProductContext"
 import {useAuth} from "../../Contexts/AuthContext";
 import { toastFailText, toastSuccessText } from "../Toast";
 import "./CartCard.Style.css"
+import { Link } from "react-router-dom";
 
 export const CartCard = ({ product }) => {
 
@@ -80,6 +81,7 @@ export const CartCard = ({ product }) => {
   return (
     <div className="cart-card">
       <div className="cart-img-div">
+      <Link to={`/products/${_id}`}>
         <img src={image} alt={name} />
         <div
           class="ribbon"
@@ -87,6 +89,7 @@ export const CartCard = ({ product }) => {
         >
           <span>Deluxe</span>
         </div>
+        </Link>
       </div>
       <div className="cart-card-body">
         <div className="cart-details-heading">

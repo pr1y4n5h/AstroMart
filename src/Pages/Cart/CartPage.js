@@ -12,7 +12,7 @@ export const CartPage = () => {
   useScrollToTop();
   usePageTitle("AstroMart || My Cart") 
 
-  const { cart } = useProducts();
+  const { cart, cartTotal} = useProducts();
   const { loggedUser } = useAuth();
 
   return ( 
@@ -24,7 +24,7 @@ export const CartPage = () => {
           <CartCard product={item} />
         ))}
       </div>
-      <CartSummary />
+      <CartSummary total={cartTotal} cart={cart} />
     </div> : <Empty component="Cart" />}
     </>
   );
