@@ -3,9 +3,9 @@
   width: 40%;
   margin-left: 3rem;
   padding: 2rem 1.5rem;
-  height: 50vh;
+  height: 60vh;
   position: sticky;
-  top: 100px;
+  top: 140px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -20,8 +20,12 @@
   margin-top: 1rem;
 }
 
+.cart-shipping-hdn {
+  margin-right: 0.5rem;
+}
+
 .cart-net-total {
-  margin-left: 3rem;
+  text-align: center;
   margin-bottom: 1.5rem;
 }
 
@@ -30,13 +34,23 @@
   padding: 2rem 2rem;
 }
 
+.cart-summary-calc p {
+  margin-top: 2rem;
+  font-size:0.85rem;
+}
+
+.checkout-btn {
+  text-align: center;
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .cart-summary-aside {
     font-family: "Inter", sans-serif;
     width: 100%;
     margin: 0;
     padding: 2rem 1.5rem;
-    height: 50vh;
+    height: auto;
   }
  
   .cart-shipping {

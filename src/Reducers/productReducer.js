@@ -39,7 +39,6 @@ export function productReducer(state, action) {
       return {
         ...state,
         cart: [...state.cart, { ...action.payload, quantity: 1 }],
-        cartTotal: state.cartTotal + action.payload.price,
       };
 
     case "INCREMENT_QTY":
@@ -50,7 +49,6 @@ export function productReducer(state, action) {
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-        cartTotal: state.cartTotal + action.payload.price,
       };
 
     case "DECREMENT_QTY":
@@ -64,7 +62,6 @@ export function productReducer(state, action) {
                   : item
               )
             : state.cart.filter((item) => item._id !== action.payload._id),
-        cartTotal: state.cartTotal - action.payload.price,
       };
 
     case "REMOVE_FROM_CART":
@@ -77,7 +74,6 @@ export function productReducer(state, action) {
       return {
         ...state,
         cart: [],
-        cartTotal: 0,
       };
 
     case "FLUSH_WISHLIST":
